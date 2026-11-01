@@ -23,34 +23,36 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0b1f3a",
+  themeColor: "#f97316",
   width: "device-width",
   initialScale: 1,
 };
 
 export const metadata: Metadata = {
   title:
-    "NexaCore ICT | Sovereign IT Infrastructure & Enterprise Solutions - Abu Dhabi",
+    "ROYAL ARABIAN Smart Technologies LLC | Next-Gen ICT Infrastructure & Solutions - Abu Dhabi",
   description:
-    "End-to-end ICT infrastructure, sovereign cloud, and 24/7 network management solutions engineered for enterprise continuity across Abu Dhabi and global markets.",
+    "Empowering government entities, enterprise complexes, and premier real estate across Abu Dhabi and the UAE with mission-critical surveillance, networking, cloud computing, and intelligent ELV automation.",
   keywords: [
+    "Royal Arabian Smart Technologies",
+    "RACT Abu Dhabi",
+    "ADMCC Approved CCTV",
+    "ADNOC ICV Certified",
     "ICT Solutions Abu Dhabi",
-    "Sovereign IT Infrastructure",
-    "Enterprise Networking UAE",
-    "Data Center Solutions",
-    "Managed IT Services UAE",
-    "Tier-III SLA",
-    "ISO 27001",
-    "Arabian Computers",
+    "ELV Automation UAE",
+    "Enterprise Wi-Fi UAE",
+    "Turnkey Data Center",
+    "Fiber Optic Cabling",
   ],
-  authors: [{ name: "NexaCore ICT / Arabian Computers LLC" }],
+  authors: [{ name: "Royal Arabian Smart Technologies LLC" }],
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "NexaCore ICT | Sovereign IT Infrastructure - Abu Dhabi",
+    title:
+      "ROYAL ARABIAN Smart Technologies LLC | Next-Gen ICT Solutions Abu Dhabi",
     description:
-      "Mission-critical ICT infrastructure engineered for sovereign enterprise continuity in the UAE and worldwide.",
+      "Mission-critical ICT infrastructure, ADMCC approved CCTV surveillance, and enterprise ELV automation across the United Arab Emirates.",
     type: "website",
     locale: "en_AE",
   },
@@ -66,7 +68,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakartaSans.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
-      <body className="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+      <body className="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
         {children}
       </body>
     </html>

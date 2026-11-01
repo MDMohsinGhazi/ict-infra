@@ -18,10 +18,37 @@ export interface SolutionItem {
   description: string;
   icon: string;
   code?: string;
-  href?: string;
-  featured?: boolean;
   badge?: string;
-  ctaText?: string;
+  href?: string;
+  actionText?: string;
+  tagColorClass?: string;
+}
+
+export interface SectorItem {
+  id: string;
+  title: string;
+  tag: string;
+  tagColorClass?: string;
+  description: string;
+  imageUrl: string;
+  chips: string[];
+}
+
+export interface PartnerItem {
+  id: string;
+  name: string;
+  partnerType: string;
+  description: string;
+  icon: string;
+  colorClass: string;
+}
+
+export interface AccreditationItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  colorClass: string;
 }
 
 export interface ValuePillarItem {
@@ -29,6 +56,8 @@ export interface ValuePillarItem {
   title: string;
   description: string;
   icon: string;
+  badgeText: string;
+  colorClass: string;
 }
 
 export interface ClientItem {
@@ -45,5 +74,6 @@ export interface QuoteFormData {
   email: string;
   phone: string;
   serviceCategory: string;
+  projectLocation?: string;
   projectScope: string;
 }

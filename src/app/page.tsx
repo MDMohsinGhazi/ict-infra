@@ -4,9 +4,10 @@ import { useState } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
-import { ClientsSection } from "@/components/sections/ClientsSection";
+import { AccreditationsSection } from "@/components/sections/AccreditationsSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { SectorsSection } from "@/components/sections/SectorsSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { StatsStrip } from "@/components/sections/StatsStrip";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -28,38 +29,37 @@ export default function Home() {
 
   return (
     <>
-      {/* Fixed Navigation Header */}
+      {/* Fixed Navigation Header with Top Utility Bar */}
       <Header onOpenQuote={() => handleOpenQuote()} />
 
       {/* Main Content Sections */}
-      <main className="w-full pt-16 lg:pt-20 bg-background pb-10 lg:pb-0">
+      <main className="w-full pt-16 lg:pt-[116px] bg-surface min-h-screen pb-20 lg:pb-0">
         <div className="flex flex-col w-full">
-          {/* 1. Mobile-Optimized & Desktop Hero Section */}
+          {/* 1. Hero Section */}
           <HeroSection onOpenConsultation={() => handleOpenQuote()} />
 
-          {/* 2. High-Contrast Stats Strip (2x2 on Mobile, 4-col on Desktop) */}
+          {/* 2. Performance Impact Metrics Bar */}
           <StatsStrip />
 
-          {/* 3. Enterprise Solutions Bento Grid */}
+          {/* 3. Core Solutions & Integrated Services Bento Grid */}
           <SolutionsSection onSelectSolution={handleSelectSolution} />
 
-          {/* 4. Why Us / NOC Live Telemetry Section */}
+          {/* 4. Sectors Served with Architectural Showcase */}
+          <SectorsSection />
+
+          {/* 5. Accreditations & Regulatory Showcase + Tech Alliance */}
+          <AccreditationsSection />
+
+          {/* 6. Why Choose Royal Arabian (Operational Rigor) */}
           <WhyUsSection />
 
-          {/* 5. Enterprise Clients Showcase (2x2 Sectors on Mobile) */}
-          <ClientsSection />
-
-          {/* 6. High-Impact CTA Banner with Inline Mobile Form & Office Panel */}
-          <CtaSection onOpenConsultation={() => handleOpenQuote()} />
+          {/* 7. Direct Inquiries & RFP Consultation Form */}
+          <CtaSection />
         </div>
       </main>
 
-      {/* Corporate Multi-Column Footer with Safe Padding */}
-      <Footer
-        onOpenBriefing={() =>
-          handleOpenQuote("Executive Briefing & Architecture Audit")
-        }
-      />
+      {/* Multi-Column Footer with Accreditations Marquee */}
+      <Footer />
 
       {/* Mobile Fixed Bottom Navigation Bar */}
       <MobileBottomNav />

@@ -1,205 +1,184 @@
-import {
-  ArrowRight,
-  Globe,
-  Mail,
-  MapPin,
-  Network,
-  Phone,
-  Share2,
-} from "lucide-react";
+import { Phone } from "lucide-react";
 import Image from "next/image";
 import { COMPANY_INFO } from "@/data/company";
 
-interface FooterProps {
-  onOpenBriefing?: () => void;
-}
-
-export function Footer({ onOpenBriefing }: FooterProps) {
+export function Footer() {
   return (
-    <footer className="w-full bg-primary-container text-on-primary-container pt-12 lg:pt-16 pb-28 lg:pb-12 border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        {/* Mobile Header Row (Visible < md) */}
-        <div className="md:hidden flex items-center justify-between pb-6 border-b border-white/10 gap-2 flex-wrap">
-          <div className="flex items-center gap-2">
-            <Network className="w-6 h-6 text-secondary-fixed" />
-            <span className="font-title-md text-base text-on-primary font-bold">
+    <footer className="w-full bg-surface-container-low shadow-[0_-1px_8px_rgba(0,0,0,0.02)]">
+      {/* Mobile Footer (< lg) */}
+      <div className="lg:hidden w-full px-4 py-8 bg-surface-container-high flex flex-col items-center text-center gap-3 border-t border-border-hairline/60">
+        <div className="flex items-center gap-2">
+          <Image
+            src={COMPANY_INFO.logoUrl}
+            alt={COMPANY_INFO.name}
+            width={32}
+            height={24}
+            className="h-6 w-auto object-contain"
+          />
+          <span className="font-headline-sm text-base font-bold text-on-surface">
+            {COMPANY_INFO.name}
+          </span>
+        </div>
+        <p className="font-body-sm text-xs text-on-surface-variant max-w-xs leading-relaxed">
+          Pioneering certified ICT cabling, smart ELV systems, cloud
+          modernization, and ADMCC surveillance systems across the UAE since
+          2007.
+        </p>
+        <div className="flex items-center gap-3 text-on-surface-variant font-label-sm text-xs pt-1">
+          <span>ISO 9001:2015</span>
+          <span>•</span>
+          <span>ADMCC Approved</span>
+          <span>•</span>
+          <span>ADNOC ICV</span>
+        </div>
+        <p className="font-label-sm text-[11px] text-on-surface-variant opacity-75 pt-1">
+          © 2024 {COMPANY_INFO.name} ({COMPANY_INFO.shortName}). All Rights
+          Reserved.
+        </p>
+      </div>
+
+      {/* Desktop Footer Accreditations Ribbon (lg+) */}
+      <div className="hidden lg:block bg-surface-container py-4 border-b border-border-hairline/60">
+        <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4 font-label-sm text-xs text-on-surface-variant">
+          <span className="font-label-md text-sm text-on-surface font-semibold">
+            Accreditations &amp; Government Compliance:
+          </span>
+          <div className="flex flex-wrap items-center gap-2.5">
+            {COMPANY_INFO.accreditations.map((acc) => (
+              <span
+                key={acc}
+                className="px-3 py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-2xs border border-border-hairline/50 text-[11px] font-medium"
+              >
+                {acc}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Main 5-Column Grid (lg+) */}
+      <div className="hidden lg:grid max-w-7xl mx-auto px-6 py-16 grid-cols-5 gap-10">
+        {/* Col 1 & 2: Brand Information */}
+        <div className="lg:col-span-2 space-y-4">
+          <div className="flex items-center gap-3">
+            <Image
+              src={COMPANY_INFO.logoUrl}
+              alt={`${COMPANY_INFO.name} Logo`}
+              width={48}
+              height={32}
+              className="h-8 w-auto object-contain"
+            />
+            <span className="font-headline-sm text-xl text-on-surface font-bold tracking-tight">
               {COMPANY_INFO.name}
             </span>
           </div>
-          <a
-            href={`tel:${COMPANY_INFO.phone}`}
-            className="min-h-[44px] px-4 inline-flex items-center gap-2 rounded-lg bg-secondary text-on-secondary font-label-md text-xs font-semibold"
-          >
-            <Phone className="w-4 h-4" />
-            <span>{COMPANY_INFO.phone}</span>
-          </a>
-        </div>
 
-        {/* Multi-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 py-6 lg:pb-12">
-          {/* Brand & International Column */}
-          <div className="space-y-4">
-            <div className="hidden md:flex items-center gap-3">
-              <div className="relative h-7 w-10">
-                <Image
-                  src={COMPANY_INFO.logoUrl}
-                  alt={`${COMPANY_INFO.name} Logo`}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <span className="font-title-md text-title-md text-on-primary font-bold">
-                {COMPANY_INFO.name}
+          <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant max-w-sm leading-relaxed [text-wrap:pretty]">
+            Premier UAE ICT infrastructure and smart building systems integrator
+            established in Abu Dhabi in 2007. Delivering mission-critical
+            government infrastructure, enterprise networking, and
+            intelligence-driven building management.
+          </p>
+
+          <div className="pt-2">
+            <div className="flex flex-col">
+              <span className="font-label-sm text-xs text-on-surface-variant uppercase font-medium">
+                24/7 Operations Desk
               </span>
-            </div>
-            <p className="font-body-sm text-xs sm:text-body-sm text-on-primary-container/80 leading-relaxed">
-              Pioneering sovereign enterprise infrastructure, high-assurance
-              connectivity, and mission-critical cloud governance across the
-              Gulf region and international commercial hubs.
-            </p>
-            <div className="pt-1">
-              <span className="font-label-sm text-xs uppercase tracking-wider text-tertiary-fixed block mb-1.5 font-bold">
-                International Presence
-              </span>
-              <span className="font-code-sm text-xs text-on-primary tracking-wide">
-                {COMPANY_INFO.internationalPresence.join(" • ")}
-              </span>
-            </div>
-          </div>
-
-          {/* Headquarters Column */}
-          <div className="space-y-3">
-            <span className="font-label-md text-xs sm:text-label-md text-on-primary uppercase tracking-wider block font-bold">
-              Corporate Headquarters
-            </span>
-            <div className="space-y-2.5 font-body-sm text-xs sm:text-body-sm text-on-primary-container/80">
-              <p className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-tertiary-fixed shrink-0 mt-0.5" />
-                <span>
-                  Al Salam St, Salam HQ Building,
-                  <br />
-                  Abu Dhabi, United Arab Emirates
-                </span>
-              </p>
-              <p className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-tertiary-fixed shrink-0" />
-                <a
-                  href={`tel:${COMPANY_INFO.phone}`}
-                  className="hover:text-on-primary transition-colors"
-                >
-                  Tel: {COMPANY_INFO.phone}
-                </a>
-              </p>
-              <p className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-tertiary-fixed shrink-0" />
-                <a
-                  href={`mailto:${COMPANY_INFO.email}`}
-                  className="hover:text-on-primary transition-colors"
-                >
-                  {COMPANY_INFO.email}
-                </a>
-              </p>
-            </div>
-          </div>
-
-          {/* Core Capabilities Column */}
-          <div className="space-y-3">
-            <span className="font-label-md text-xs sm:text-label-md text-on-primary uppercase tracking-wider block font-bold">
-              Core Capabilities
-            </span>
-            <ul className="space-y-2 font-body-sm text-xs sm:text-body-sm text-on-primary-container/80">
-              {COMPANY_INFO.coreCapabilities.map((capability) => (
-                <li key={capability.label}>
-                  <a
-                    href={capability.href}
-                    className="hover:text-on-primary transition-colors flex items-center gap-1.5"
-                  >
-                    <span className="text-tertiary-fixed text-[10px]">▸</span>
-                    <span>{capability.label}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Direct Connectivity Column */}
-          <div className="space-y-4">
-            <span className="font-label-md text-xs sm:text-label-md text-on-primary uppercase tracking-wider block font-bold">
-              Direct Connectivity
-            </span>
-            <p className="font-body-sm text-xs sm:text-body-sm text-on-primary-container/80 leading-relaxed">
-              Connect with our specialized network operations center for
-              real-time telemetry and project inquiries.
-            </p>
-            <div className="flex items-center gap-3">
               <a
-                href="#contact"
-                aria-label="Corporate Network Channel"
-                className="w-9 h-9 rounded-lg bg-surface-container-highest/10 hover:bg-surface-container-highest/25 flex items-center justify-center transition-colors text-on-primary"
+                href={`tel:${COMPANY_INFO.phone}`}
+                className="font-headline-sm text-base sm:text-lg text-primary font-bold hover:underline inline-flex items-center gap-1.5"
               >
-                <Share2 className="w-4 h-4" />
+                <Phone className="w-4 h-4" />
+                <span>{COMPANY_INFO.phone}</span>
               </a>
-              <a
-                href="#contact"
-                aria-label="Regional Operations Feed"
-                className="w-9 h-9 rounded-lg bg-surface-container-highest/10 hover:bg-surface-container-highest/25 flex items-center justify-center transition-colors text-on-primary"
-              >
-                <Network className="w-4 h-4" />
-              </a>
-              <a
-                href="#contact"
-                aria-label="Official Portal"
-                className="w-9 h-9 rounded-lg bg-surface-container-highest/10 hover:bg-surface-container-highest/25 flex items-center justify-center transition-colors text-on-primary"
-              >
-                <Globe className="w-4 h-4" />
-              </a>
-            </div>
-            <div className="pt-1">
-              <button
-                type="button"
-                onClick={onOpenBriefing}
-                className="inline-flex items-center gap-1 font-label-sm text-xs text-tertiary-fixed underline tracking-wide uppercase hover:text-tertiary-fixed-dim transition-colors cursor-pointer text-left"
-              >
-                <span>Request Executive Briefing</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="h-[1px] w-full bg-on-primary-container/20" />
+        {/* Col 3: Solutions */}
+        <div className="space-y-3">
+          <h3 className="font-label-md text-sm text-on-surface font-bold uppercase tracking-wider">
+            Solutions
+          </h3>
+          <ul className="space-y-2.5 font-body-sm text-xs sm:text-sm text-on-surface-variant">
+            {COMPANY_INFO.solutionsList.map((sol) => (
+              <li key={sol.label}>
+                <a
+                  href={sol.href}
+                  className="hover:text-primary transition-colors block"
+                >
+                  {sol.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        {/* Legal & Regulatory Compliance */}
-        <div className="pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 font-body-sm text-xs sm:text-body-sm text-on-primary-container">
-          <div className="space-y-1">
-            <p>
-              © 2025 {COMPANY_INFO.name} • {COMPANY_INFO.legalName}. All rights
-              reserved. Sovereign Infrastructure Grade.
-            </p>
-            <p className="text-[11px] text-on-primary-container/90">
-              Licensed by Abu Dhabi Global Market (ADGM) &amp; TDRA sovereign
-              enterprise frameworks.
-            </p>
+        {/* Col 4: Company */}
+        <div className="space-y-3">
+          <h3 className="font-label-md text-sm text-on-surface font-bold uppercase tracking-wider">
+            Company
+          </h3>
+          <ul className="space-y-2.5 font-body-sm text-xs sm:text-sm text-on-surface-variant">
+            {COMPANY_INFO.companyLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className="hover:text-primary transition-colors block"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Col 5: Regional HQ */}
+        <div className="space-y-3">
+          <h3 className="font-label-md text-sm text-on-surface font-bold uppercase tracking-wider">
+            Regional HQ
+          </h3>
+          <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+            Hamdan Street, Prestige Tower
+            <br />
+            P.O. Box 48211
+            <br />
+            Abu Dhabi, United Arab Emirates
+          </p>
+          <div className="pt-2">
+            <span className="inline-block px-3 py-1.5 rounded-lg bg-surface-container font-label-sm text-xs text-on-surface font-semibold border border-border-hairline/60">
+              Govt Lic: {COMPANY_INFO.govtLicense}
+            </span>
           </div>
-          <div className="flex items-center gap-4 sm:gap-6 font-label-sm text-xs">
+        </div>
+      </div>
+
+      {/* Desktop Copyright Row (lg+) */}
+      <div className="hidden lg:block bg-surface-container-lowest py-5 border-t border-border-hairline/60">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-label-sm text-xs text-on-surface-variant">
+          <div>
+            © 2024 {COMPANY_INFO.legalName} ({COMPANY_INFO.shortName}). All
+            rights reserved.
+          </div>
+          <div className="flex items-center gap-6">
             <a
               href="#privacy"
-              className="hover:text-on-primary transition-colors"
+              className="hover:text-on-surface transition-colors"
             >
               Privacy Policy
             </a>
             <a
               href="#terms"
-              className="hover:text-on-primary transition-colors"
+              className="hover:text-on-surface transition-colors"
             >
               Terms of Service
             </a>
             <a
               href="#compliance"
-              className="hover:text-on-primary transition-colors"
+              className="hover:text-on-surface transition-colors"
             >
-              UAE Compliance
+              Regulatory Compliance
             </a>
           </div>
         </div>

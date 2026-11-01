@@ -1,28 +1,42 @@
 export const COMPANY_INFO = {
-  name: "NexaCore ICT",
-  legalName: "Arabian Computers LLC",
-  tagline: "Abu Dhabi • Enterprise Solutions",
-  logoUrl:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAzd2hlaf00RDZGrH50DUwkPyn6APGjp0tKmcIIFkGS8rzxMgZyKB7brPp8kZOYUHEQG0VSuisTz_ErMq2TS9HcnnrAPEFTnPhRIOmhd5zMl5wGEYaIUXN9nBrg61uMxaN1vp1ri7gh8d7mnZ9rEIyL3nlKej5eqW8G0LxEFh4PAxGcySjc9YLrwjp6e_9BhSO3e3wk4bu3KwU6CrVvQARuypY_WB9KTUcI6uOGS0aN",
-  heroImageUrl:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuA9OkWQPsk60GMpcs4m2bez-1bmARE-uUhzOSAQfwWpq21gCjr1sgSyIUZ85CY5rrwFgwV70OPh37krFORvAXPJWX8ItncCxER_uyL3wa1VMPJdjtdVX60lETTnLLiigTrfk9SdNM7MJ5JQ-9Jc4mfVtD0LFCUQGJ8yzQUmsO89RyS7C-CnZUGqjFxGcdPH6wvilDc-yKwQU-5KL2fw_knNHJoul97Aj9Ff_3VbVEN2",
-  nocImageUrl:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuB63IG_6RyhIeiIL2crCD_Ml95Neq4NZGbWaPKFNqH2A22yyUt91NofYkH7uahWFz7FoPurH2tbuASOV1AzA4vTjl_w_XLqnfka1Gacct5kgF3TaZRzeM4TwvWrrsXLZ3t5iTmQZa9Rx7MjH-ZQO3AU_wxI1AN5jTJ4vrf1-b2Gf5sVt20M7fnmo6CKr6NUxQQWzy3o2do4O-lrhxsnbAvlUBBGDsxJn5HhkAvGcpLe",
-  address: "Al Salam St, Salam HQ Building, Abu Dhabi, United Arab Emirates",
+  name: "ROYAL ARABIAN",
+  legalName: "Royal Arabian Smart Technologies LLC",
+  shortName: "RACT",
+  tagline: "Smart Technologies LLC",
+  fullTagline:
+    "Next-Generation ICT Infrastructure & Smart Technology Solutions",
+  established: 2007,
+  govtLicense: "CN-1092834",
   phone: "+971 2 6212354",
+  mobiles: ["+971 54 4443635", "+971 56 4479783"],
   email: "info@arabiancomputers.com",
-  certifications: [
-    "Tier-III SLA Ready",
-    "ISO 27001 Certified",
-    "UAE TDRA Compliant",
-    "UAE Sovereign Cloud Verified",
+  address: "123 M4, Alsa Apollo Bldg, Salam St, TCA, Abu Dhabi",
+  regionalHq: "Hamdan Street, Prestige Tower, P.O. Box 48211, Abu Dhabi, UAE",
+  logoUrl:
+    "https://lh3.googleusercontent.com/aida/AEtjO1VAwe1-gl06NeAkQTTGXWuJqxCWe_j5eCidEXNIT4oI-5Ji37Mm9lSW7j-S20zgjSnSclEhaeU4QEMBQkez7LuMeB_xQchjVIUWtVLqTwgYGV1Ky3gprvFgbLEjD7yCadvZiwfEJmlGGkGS2KvW7P7nYS01c52EKe1uyhTZcO3k8lNHKDkxLfDOmN3Hedg083HGw0gcftG0svKTV23JIafVm0v8p0-No7-0i_M7pNI",
+  heroImageUrl:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuAwlt1YoZBdzadifVP6KxPNoN9RnGWQdjUSl4YOrp3fJYsJ27jjZhxi0PN0BHF16dvf2Y1ye_QLhUKHoBwmYZnEgRBHI0oruwl0Imd6wDLNhHbDhOgd96bNgUloxZaM-BNxrKKlsY4V2NGN3wBcKLS3iR-n1aFazAksbQUCXmdKXYuSeLEIJZQptTIE4ZgViVTsZA4n_1y2MDRWWC9n4EeLvqF2MfLvsZnCAOJ5dw",
+  accreditations: [
+    "ADMCC Approved Integrator",
+    "ISO 9001:2015 Quality Management",
+    "ADNOC ICV Certified",
+    "Magnizon Strategic Partner",
+    "SIRA Compliant",
+    "OHSAS 18001",
   ],
-  internationalPresence: ["UAE", "INDIA", "CHINA", "UK"],
-  coreCapabilities: [
-    { label: "Hyperscale Data Centers", href: "#solutions" },
-    { label: "Managed Cyber Defense & SOC", href: "#solutions" },
-    { label: "Fiber Backbone & SD-WAN", href: "#solutions" },
-    { label: "Sovereign Cloud Migration", href: "#solutions" },
-    { label: "Tier-1 SLA Infrastructure", href: "#solutions" },
+  solutionsList: [
+    { label: "Security & CCTV ADMCC", href: "#solutions" },
+    { label: "Cloud & Microsoft 365", href: "#solutions" },
+    { label: "Enterprise Wi-Fi & Switching", href: "#solutions" },
+    { label: "Fiber Optic & Cabling", href: "#solutions" },
+    { label: "Smart Building Automation", href: "#solutions" },
+    { label: "Data Center & UPS Backup", href: "#solutions" },
+  ],
+  companyLinks: [
+    { label: "Corporate Profile", href: "#about" },
+    { label: "Accreditations & ISO", href: "#accreditations" },
+    { label: "Flagship Case Studies", href: "#sectors" },
+    { label: "Annual Maintenance (AMC)", href: "#why-us" },
+    { label: "Abu Dhabi HQ & Contact", href: "#contact" },
   ],
 };
