@@ -1,122 +1,128 @@
-import { CheckCircle2 } from "lucide-react";
+"use client";
+
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { SECTORS_DATA } from "@/data/sectors";
+import { useRef } from "react";
+
+const INDUSTRIES_DATA = [
+  {
+    title: "EDUCATION",
+    subtitle: "Universities, K-12 Academies & Smart Campuses",
+    imageUrl:
+      "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "HEALTHCARE",
+    subtitle: "Hospitals, Medical Towers & Clean-Room Clinics",
+    imageUrl:
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "FINANCIAL INSTITUTIONS",
+    subtitle: "Banking HQs, Data Vaults & Trading Floors",
+    imageUrl:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "INDUSTRIAL & MANUFACTURING",
+    subtitle: "Factories, Warehouses & Port Logistics",
+    imageUrl:
+      "https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "OIL & GAS / OFFSHORE",
+    subtitle: "ADNOC Fields, Refineries & Hazardous Zones",
+    imageUrl:
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    title: "HOSPITALITY & RETAIL",
+    subtitle: "5-Star Resorts, Shopping Malls & Mixed-Use Towers",
+    imageUrl:
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop",
+  },
+];
 
 export function SectorsSection() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -340, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 340, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section
-      className="w-full py-6 lg:py-20 bg-surface-container-low"
-      id="projects"
-    >
-      {/* MOBILE HORIZONTAL SCROLL TRACK (< lg) */}
-      <div className="lg:hidden w-full px-4 flex flex-col gap-3">
-        <div className="flex flex-col gap-1">
-          <span className="font-label-sm text-xs text-primary uppercase font-bold tracking-wider">
-            Sector Specialization
-          </span>
-          <h2 className="font-headline-sm text-lg text-on-surface font-bold">
-            UAE Vertical Deployments
-          </h2>
-          <p className="font-body-sm text-xs text-on-surface-variant">
-            Tailored systems aligned with local regulatory requirements.
-          </p>
-        </div>
+    <section className="w-full py-16 lg:py-24 bg-white" id="sectors">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div className="flex flex-col items-start">
+            <h2 className="font-section-heading text-zinc-900 tracking-tight leading-none uppercase">
+              Industries We Serve
+            </h2>
+            <p className="mt-2 font-condensed text-sm sm:text-base text-zinc-500 uppercase tracking-widest font-semibold">
+              Engineered for Mission-Critical Environments Across the UAE
+            </p>
+          </div>
 
-        <div className="flex overflow-x-auto gap-3.5 pb-2 -mx-4 px-4 scroll-smooth no-scrollbar">
-          {SECTORS_DATA.map((sector) => (
-            <div
-              key={sector.id}
-              className="shrink-0 w-72 bg-surface-container-lowest rounded-xl overflow-hidden shadow-xs flex flex-col border border-border-hairline/50"
+          {/* Slider Arrow Controls */}
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={scrollLeft}
+              className="w-10 h-10 rounded-full border border-zinc-300 hover:border-black flex items-center justify-center text-zinc-700 hover:text-black transition-colors cursor-pointer"
+              aria-label="Previous Industries"
             >
-              <div className="relative h-36 w-full">
-                <Image
-                  src={sector.imageUrl}
-                  alt={sector.title}
-                  fill
-                  className="object-cover"
-                />
-                <span className="absolute top-2 left-2 bg-on-surface/80 backdrop-blur-sm text-on-primary font-label-sm text-[10px] px-2 py-0.5 rounded font-semibold">
-                  {sector.tag}
-                </span>
-              </div>
-              <div className="p-3.5 flex flex-col gap-1.5 flex-1 justify-between">
-                <div>
-                  <h4 className="font-headline-sm text-sm font-bold text-on-surface">
-                    {sector.title}
-                  </h4>
-                  <p className="font-body-sm text-xs text-on-surface-variant line-clamp-3 mt-1 leading-relaxed">
-                    {sector.description}
-                  </p>
-                </div>
-                <div className="flex items-center gap-1.5 text-primary font-label-sm text-xs font-semibold pt-2 border-t border-border-hairline/40">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
-                  <span className="truncate">
-                    {sector.chips[0] || "Fully Certified"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* DESKTOP GRID (lg+) */}
-      <div className="hidden lg:block max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="font-label-sm text-xs text-primary font-bold uppercase tracking-widest">
-            Industry Expertise
-          </span>
-          <h2 className="font-headline-lg text-4xl text-on-surface font-bold tracking-tight mt-2">
-            Tailored for High-Stakes UAE Sectors
-          </h2>
-          <p className="font-body-md text-base text-on-surface-variant mt-2 leading-relaxed [text-wrap:pretty]">
-            From ADNOC-compliant offshore operations to Five-Star hospitality
-            destinations.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-3 gap-8">
-          {SECTORS_DATA.map((sector) => (
-            <div
-              key={sector.id}
-              className="rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs hover:shadow-lg transition-all group border border-border-hairline/60 flex flex-col justify-between"
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollRight}
+              className="w-10 h-10 rounded-full border border-zinc-300 hover:border-black flex items-center justify-center text-zinc-700 hover:text-black transition-colors cursor-pointer"
+              aria-label="Next Industries"
             >
-              <div>
-                <div className="h-52 overflow-hidden relative">
-                  <Image
-                    src={sector.imageUrl}
-                    alt={sector.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div
-                    className={`absolute top-3 left-3 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full font-label-sm text-xs font-semibold shadow-2xs ${
-                      sector.tagColorClass || "text-on-surface"
-                    }`}
-                  >
-                    {sector.tag}
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-headline-sm text-lg text-on-surface font-bold mb-2 group-hover:text-primary transition-colors">
-                    {sector.title}
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Industries Photo Cards with Centered Dark Box (Transit style) */}
+        <div
+          ref={scrollContainerRef}
+          className="flex items-stretch gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {INDUSTRIES_DATA.map((ind) => (
+            <div
+              key={ind.title}
+              className="w-[300px] sm:w-[340px] h-[340px] sm:h-[380px] flex-shrink-0 snap-start relative group overflow-hidden border border-zinc-200 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300"
+            >
+              {/* Background Photo */}
+              <Image
+                src={ind.imageUrl}
+                alt={ind.title}
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
+                sizes="340px"
+              />
+              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors" />
+
+              {/* Centered Translucent Black Box with Bold White Text (Exact transit-si match) */}
+              <div className="absolute inset-0 flex items-center justify-center p-6 pointer-events-none">
+                <div className="bg-black/85 group-hover:bg-black px-6 py-4 rounded text-center backdrop-blur-sm border border-white/20 transition-all duration-300 group-hover:scale-105 shadow-xl max-w-[90%]">
+                  <h3 className="font-card-heading text-white tracking-wider uppercase leading-snug">
+                    {ind.title}
                   </h3>
-                  <p className="font-body-sm text-sm text-on-surface-variant mb-4 leading-relaxed [text-wrap:pretty]">
-                    {sector.description}
+                  <p className="mt-1.5 text-[11px] font-condensed uppercase tracking-wider text-zinc-300 line-clamp-1">
+                    {ind.subtitle}
                   </p>
-                </div>
-              </div>
-
-              <div className="px-6 pb-6 pt-0">
-                <div className="flex flex-wrap gap-1.5">
-                  {sector.chips.map((chip) => (
-                    <span
-                      key={chip}
-                      className="px-2.5 py-1 rounded bg-surface-container text-on-surface font-label-sm text-[11px] font-medium"
-                    >
-                      {chip}
-                    </span>
-                  ))}
                 </div>
               </div>
             </div>

@@ -1,185 +1,234 @@
-import { Phone } from "lucide-react";
-import Image from "next/image";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { COMPANY_INFO } from "@/data/company";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-surface-container-low shadow-[0_-1px_8px_rgba(0,0,0,0.02)]">
-      {/* Mobile Footer (< lg) */}
-      <div className="lg:hidden w-full px-4 py-8 bg-surface-container-high flex flex-col items-center text-center gap-3 border-t border-border-hairline/60">
-        <div className="flex items-center gap-2">
-          <Image
-            src={COMPANY_INFO.logoUrl}
-            alt={COMPANY_INFO.name}
-            width={32}
-            height={24}
-            className="h-6 w-auto object-contain"
-          />
-          <span className="font-headline-sm text-base font-bold text-on-surface">
-            {COMPANY_INFO.name}
-          </span>
-        </div>
-        <p className="font-body-sm text-xs text-on-surface-variant max-w-xs leading-relaxed">
-          Pioneering certified ICT cabling, smart ELV systems, cloud
-          modernization, and ADMCC surveillance systems across the UAE since
-          2007.
-        </p>
-        <div className="flex items-center gap-3 text-on-surface-variant font-label-sm text-xs pt-1">
-          <span>ISO 9001:2015</span>
-          <span>•</span>
-          <span>ADMCC Approved</span>
-          <span>•</span>
-          <span>ADNOC ICV</span>
-        </div>
-        <p className="font-label-sm text-[11px] text-on-surface-variant opacity-75 pt-1">
-          © 2024 {COMPANY_INFO.name} ({COMPANY_INFO.shortName}). All Rights
-          Reserved.
-        </p>
-      </div>
+    <footer className="w-full bg-black text-white border-t border-white/10">
+      {/* Upper Navigation & Corporate Details */}
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+          {/* Brand & About */}
+          <div className="lg:col-span-2 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-white font-bold font-condensed text-lg">
+                RA
+              </div>
+              <div className="flex flex-col">
+                <span className="font-condensed text-2xl text-white tracking-wider font-bold leading-tight">
+                  {COMPANY_INFO.name}
+                </span>
+                <span className="font-label-sm text-[10px] text-zinc-400 tracking-widest uppercase font-semibold">
+                  Smart Technologies LLC
+                </span>
+              </div>
+            </div>
 
-      {/* Desktop Footer Accreditations Ribbon (lg+) */}
-      <div className="hidden lg:block bg-surface-container py-4 border-b border-border-hairline/60">
-        <div className="max-w-7xl mx-auto px-6 flex flex-wrap items-center justify-between gap-4 font-label-sm text-xs text-on-surface-variant">
-          <span className="font-label-md text-sm text-on-surface font-semibold">
-            Accreditations &amp; Government Compliance:
-          </span>
-          <div className="flex flex-wrap items-center gap-2.5">
-            {COMPANY_INFO.accreditations.map((acc) => (
-              <span
-                key={acc}
-                className="px-3 py-1 rounded-full bg-surface-container-lowest text-on-surface shadow-2xs border border-border-hairline/50 text-[11px] font-medium"
-              >
-                {acc}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+            <p className="font-body-sm text-sm text-zinc-400 max-w-sm leading-relaxed">
+              Premier UAE system integrator established in Abu Dhabi in 2007. We
+              design, deploy, and maintain low-voltage (ELV),
+              telecommunications, ADMCC compliant surveillance, and smart
+              building automation across government, commercial, and critical
+              infrastructure sectors.
+            </p>
 
-      {/* Main 5-Column Grid (lg+) */}
-      <div className="hidden lg:grid max-w-7xl mx-auto px-6 py-16 grid-cols-5 gap-10">
-        {/* Col 1 & 2: Brand Information */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center gap-3">
-            <Image
-              src={COMPANY_INFO.logoUrl}
-              alt={`${COMPANY_INFO.name} Logo`}
-              width={48}
-              height={32}
-              className="h-8 w-auto object-contain"
-            />
-            <span className="font-headline-sm text-xl text-on-surface font-bold tracking-tight">
-              {COMPANY_INFO.name}
-            </span>
+            <div className="pt-2 space-y-2">
+              <div className="flex items-center gap-2 text-xs text-zinc-400">
+                <MapPin className="w-4 h-4 text-primary-container shrink-0" />
+                <span>{COMPANY_INFO.address}</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-zinc-400">
+                <Phone className="w-4 h-4 text-primary-container shrink-0" />
+                <a
+                  href={`tel:${COMPANY_INFO.phone}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {COMPANY_INFO.phone}
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-zinc-400">
+                <Mail className="w-4 h-4 text-primary-container shrink-0" />
+                <a
+                  href={`mailto:${COMPANY_INFO.email}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {COMPANY_INFO.email}
+                </a>
+              </div>
+            </div>
           </div>
 
-          <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant max-w-sm leading-relaxed [text-wrap:pretty]">
-            Premier UAE ICT infrastructure and smart building systems integrator
-            established in Abu Dhabi in 2007. Delivering mission-critical
-            government infrastructure, enterprise networking, and
-            intelligence-driven building management.
-          </p>
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-heading-condensed text-lg text-white font-bold tracking-wider uppercase mb-4">
+              Quick Links
+            </h4>
+            <ul className="space-y-2.5 font-condensed text-sm uppercase tracking-wider text-zinc-400">
+              <li>
+                <a href="/" className="hover:text-white transition-colors">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#about-us"
+                  className="hover:text-white transition-colors"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#services"
+                  className="hover:text-white transition-colors"
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  Solutions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#certifications"
+                  className="hover:text-white transition-colors"
+                >
+                  Certifications
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#projects"
+                  className="hover:text-white transition-colors"
+                >
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="hover:text-white transition-colors"
+                >
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
 
-          <div className="pt-2">
-            <div className="flex flex-col">
-              <span className="font-label-sm text-xs text-on-surface-variant uppercase font-medium">
-                24/7 Operations Desk
-              </span>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="font-headline-sm text-base sm:text-lg text-primary font-bold hover:underline inline-flex items-center gap-1.5"
-              >
-                <Phone className="w-4 h-4" />
-                <span>{COMPANY_INFO.phone}</span>
-              </a>
+          {/* Core Solutions */}
+          <div>
+            <h4 className="font-heading-condensed text-lg text-white font-bold tracking-wider uppercase mb-4">
+              Solutions
+            </h4>
+            <ul className="space-y-2.5 font-condensed text-sm uppercase tracking-wider text-zinc-400">
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  CCTV Surveillance (ADMCC)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  Access Control &amp; Biometrics
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  Public Address (PA/VA)
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  Industrial Explosion Protection
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  EV Charging Infrastructure
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  Data Center UPS Systems
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#solutions"
+                  className="hover:text-white transition-colors"
+                >
+                  Master Clock Synchronization
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Regional Reach & Accreditations */}
+          <div>
+            <h4 className="font-heading-condensed text-lg text-white font-bold tracking-wider uppercase mb-4">
+              Regulatory Approval
+            </h4>
+            <div className="space-y-3 font-condensed text-xs uppercase tracking-wider text-zinc-400">
+              <div className="p-2.5 bg-zinc-900 border border-white/10 rounded">
+                <span className="text-white font-bold block">
+                  ADMCC Approved
+                </span>
+                <span className="text-[11px] text-zinc-500">
+                  Abu Dhabi Monitoring &amp; Control Centre
+                </span>
+              </div>
+              <div className="p-2.5 bg-zinc-900 border border-white/10 rounded">
+                <span className="text-white font-bold block">
+                  SIRA Compliant
+                </span>
+                <span className="text-[11px] text-zinc-500">
+                  Security Industry Regulatory Agency
+                </span>
+              </div>
+              <div className="p-2.5 bg-zinc-900 border border-white/10 rounded">
+                <span className="text-white font-bold block">
+                  ADNOC ICV Certified
+                </span>
+                <span className="text-[11px] text-zinc-500">
+                  In-Country Value Certified Supplier
+                </span>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Col 3: Solutions */}
-        <div className="space-y-3">
-          <h3 className="font-label-md text-sm text-on-surface font-bold uppercase tracking-wider">
-            Solutions
-          </h3>
-          <ul className="space-y-2.5 font-body-sm text-xs sm:text-sm text-on-surface-variant">
-            {COMPANY_INFO.solutionsList.map((sol) => (
-              <li key={sol.label}>
-                <a
-                  href={sol.href}
-                  className="hover:text-primary transition-colors block"
-                >
-                  {sol.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Col 4: Company */}
-        <div className="space-y-3">
-          <h3 className="font-label-md text-sm text-on-surface font-bold uppercase tracking-wider">
-            Company
-          </h3>
-          <ul className="space-y-2.5 font-body-sm text-xs sm:text-sm text-on-surface-variant">
-            {COMPANY_INFO.companyLinks.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="hover:text-primary transition-colors block"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Col 5: Regional HQ */}
-        <div className="space-y-3">
-          <h3 className="font-label-md text-sm text-on-surface font-bold uppercase tracking-wider">
-            Regional HQ
-          </h3>
-          <p className="font-body-sm text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-            Hamdan Street, Prestige Tower
-            <br />
-            P.O. Box 48211
-            <br />
-            Abu Dhabi, United Arab Emirates
-          </p>
-          <div className="pt-2">
-            <span className="inline-block px-3 py-1.5 rounded-lg bg-surface-container font-label-sm text-xs text-on-surface font-semibold border border-border-hairline/60">
-              Govt Lic: {COMPANY_INFO.govtLicense}
-            </span>
-          </div>
-        </div>
       </div>
 
-      {/* Desktop Copyright Row (lg+) */}
-      <div className="hidden lg:block bg-surface-container-lowest py-5 border-t border-border-hairline/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-label-sm text-xs text-on-surface-variant">
-          <div>
-            © 2024 {COMPANY_INFO.legalName} ({COMPANY_INFO.shortName}). All
-            rights reserved.
-          </div>
+      {/* Bottom Copyright Strip */}
+      <div className="border-t border-white/10 py-6 bg-zinc-950">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-condensed uppercase tracking-wider text-zinc-500">
+          <p>© 2026 {COMPANY_INFO.legalName}. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
-            <a
-              href="#privacy"
-              className="hover:text-on-surface transition-colors"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#terms"
-              className="hover:text-on-surface transition-colors"
-            >
-              Terms of Service
-            </a>
-            <a
-              href="#compliance"
-              className="hover:text-on-surface transition-colors"
-            >
-              Regulatory Compliance
-            </a>
+            <span>ISO 9001:2015</span>
+            <span>•</span>
+            <span>ISO 14001:2015</span>
+            <span>•</span>
+            <span>ISO 45001:2018</span>
           </div>
         </div>
       </div>

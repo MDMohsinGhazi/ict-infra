@@ -3,11 +3,13 @@
 import { useState } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
-import { AccreditationsSection } from "@/components/sections/AccreditationsSection";
+import { AboutUsSection } from "@/components/sections/AboutUsSection";
+import { ClientsMarqueeSection } from "@/components/sections/ClientsMarqueeSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { SectorsSection } from "@/components/sections/SectorsSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { StatsStrip } from "@/components/sections/StatsStrip";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -29,40 +31,46 @@ export default function Home() {
 
   return (
     <>
-      {/* Fixed Navigation Header with Top Utility Bar */}
+      {/* Fixed Navigation Header with Sleek Dark Bar */}
       <Header onOpenQuote={() => handleOpenQuote()} />
 
-      {/* Main Content Sections */}
-      <main className="w-full pt-16 lg:pt-[116px] bg-surface min-h-screen pb-20 lg:pb-0">
+      {/* Main Content (Transit-si Alternating Light / Dark Flow) */}
+      <main className="w-full pt-16 lg:pt-[116px] bg-black min-h-screen">
         <div className="flex flex-col w-full">
-          {/* 1. Hero Section */}
+          {/* 1. Hero Section (Pitch Black / Datacenter background with bold condensed typography) */}
           <HeroSection onOpenConsultation={() => handleOpenQuote()} />
 
-          {/* 2. Performance Impact Metrics Bar */}
+          {/* 2. "We Are Royal Arabian" (Light Section) */}
+          <AboutUsSection onLearnMore={() => handleOpenQuote()} />
+
+          {/* 3. Dark Stats & Accreditations Strip (Pitch Black Section: 5 Stats & Certifications) */}
           <StatsStrip />
 
-          {/* 3. Core Solutions & Integrated Services Bento Grid */}
+          {/* 4. Services Section (Light Section: "From Design to Delivery, We Handle It All") */}
+          <ServicesSection />
+
+          {/* 5. Solutions Section (Pitch Black Section: "Future-Ready Solutions for Complex Requirements") */}
           <SolutionsSection onSelectSolution={handleSelectSolution} />
 
-          {/* 4. Sectors Served with Architectural Showcase */}
+          {/* 6. Industries We Serve (Light Section: Centered Dark Overlay Cards) */}
           <SectorsSection />
 
-          {/* 5. Accreditations & Regulatory Showcase + Tech Alliance */}
-          <AccreditationsSection />
-
-          {/* 6. Why Choose Royal Arabian (Operational Rigor) */}
+          {/* 7. Why Royal Arabian (Operational Rigor & Core Value Pillars) */}
           <WhyUsSection />
 
-          {/* 7. Direct Inquiries & RFP Consultation Form */}
+          {/* 8. Flagship Projects (Pitch Black Section: "From Concept to Completion, Delivered Right") */}
+          <ProjectsSection />
+
+          {/* 9. Clients Logo Marquee (Light Section: Multi-row Infinite Marquee) */}
+          <ClientsMarqueeSection />
+
+          {/* 10. Contact Section ("Drop a Message to Our Team") */}
           <CtaSection />
         </div>
       </main>
 
-      {/* Multi-Column Footer with Accreditations Marquee */}
+      {/* Dark Corporate Multi-Column Footer */}
       <Footer />
-
-      {/* Mobile Fixed Bottom Navigation Bar */}
-      <MobileBottomNav />
 
       {/* Interactive Consultation / Quote Modal */}
       <QuoteModal
