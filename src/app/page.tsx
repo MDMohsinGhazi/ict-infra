@@ -3,10 +3,13 @@
 import { useState } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { MobileBottomNav } from "@/components/layout/MobileBottomNav";
-import { ClientsSection } from "@/components/sections/ClientsSection";
+import { AboutUsSection } from "@/components/sections/AboutUsSection";
+import { ClientsMarqueeSection } from "@/components/sections/ClientsMarqueeSection";
 import { CtaSection } from "@/components/sections/CtaSection";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { ProjectsSection } from "@/components/sections/ProjectsSection";
+import { SectorsSection } from "@/components/sections/SectorsSection";
+import { ServicesSection } from "@/components/sections/ServicesSection";
 import { SolutionsSection } from "@/components/sections/SolutionsSection";
 import { StatsStrip } from "@/components/sections/StatsStrip";
 import { WhyUsSection } from "@/components/sections/WhyUsSection";
@@ -28,41 +31,46 @@ export default function Home() {
 
   return (
     <>
-      {/* Fixed Navigation Header */}
+      {/* Fixed Navigation Header with Sleek Dark Bar */}
       <Header onOpenQuote={() => handleOpenQuote()} />
 
-      {/* Main Content Sections */}
-      <main className="w-full pt-16 lg:pt-20 bg-background pb-10 lg:pb-0">
+      {/* Main Content (Transit-si Alternating Light / Dark Flow) */}
+      <main className="w-full pt-16 lg:pt-[116px] bg-black min-h-screen">
         <div className="flex flex-col w-full">
-          {/* 1. Mobile-Optimized & Desktop Hero Section */}
+          {/* 1. Hero Section (Pitch Black / Datacenter background with bold condensed typography) */}
           <HeroSection onOpenConsultation={() => handleOpenQuote()} />
 
-          {/* 2. High-Contrast Stats Strip (2x2 on Mobile, 4-col on Desktop) */}
+          {/* 2. "We Are Royal Arabian" (Light Section) */}
+          <AboutUsSection onLearnMore={() => handleOpenQuote()} />
+
+          {/* 3. Dark Stats & Accreditations Strip (Pitch Black Section: 5 Stats & Certifications) */}
           <StatsStrip />
 
-          {/* 3. Enterprise Solutions Bento Grid */}
+          {/* 4. Services Section (Light Section: "From Design to Delivery, We Handle It All") */}
+          <ServicesSection />
+
+          {/* 5. Solutions Section (Pitch Black Section: "Future-Ready Solutions for Complex Requirements") */}
           <SolutionsSection onSelectSolution={handleSelectSolution} />
 
-          {/* 4. Why Us / NOC Live Telemetry Section */}
+          {/* 6. Industries We Serve (Light Section: Centered Dark Overlay Cards) */}
+          <SectorsSection />
+
+          {/* 7. Why Royal Arabian (Operational Rigor & Core Value Pillars) */}
           <WhyUsSection />
 
-          {/* 5. Enterprise Clients Showcase (2x2 Sectors on Mobile) */}
-          <ClientsSection />
+          {/* 8. Flagship Projects (Pitch Black Section: "From Concept to Completion, Delivered Right") */}
+          <ProjectsSection />
 
-          {/* 6. High-Impact CTA Banner with Inline Mobile Form & Office Panel */}
-          <CtaSection onOpenConsultation={() => handleOpenQuote()} />
+          {/* 9. Clients Logo Marquee (Light Section: Multi-row Infinite Marquee) */}
+          <ClientsMarqueeSection />
+
+          {/* 10. Contact Section ("Drop a Message to Our Team") */}
+          <CtaSection />
         </div>
       </main>
 
-      {/* Corporate Multi-Column Footer with Safe Padding */}
-      <Footer
-        onOpenBriefing={() =>
-          handleOpenQuote("Executive Briefing & Architecture Audit")
-        }
-      />
-
-      {/* Mobile Fixed Bottom Navigation Bar */}
-      <MobileBottomNav />
+      {/* Dark Corporate Multi-Column Footer */}
+      <Footer />
 
       {/* Interactive Consultation / Quote Modal */}
       <QuoteModal

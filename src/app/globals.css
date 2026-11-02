@@ -36,60 +36,65 @@
 }
 
 @theme {
-  --color-outline-variant: #c4c6ce;
-  --color-on-background: #0e1c2d;
-  --color-primary-container: #0b1f3a;
-  --color-surface-canvas: #ffffff;
-  --color-status-success: #0e9f6e;
-  --color-on-error-container: #93000a;
-  --color-primary: #000615;
-  --color-on-tertiary-fixed: #251a00;
-  --color-secondary-fixed: #dbe1ff;
-  --color-surface-tint: #4d5f7d;
-  --color-error: #ba1a1a;
-  --color-error-container: #ffdad6;
-  --color-on-surface-variant: #44474d;
-  --color-tertiary-fixed-dim: #eac166;
-  --color-on-secondary-fixed: #001849;
+  --color-primary: #9d4300;
+  --color-primary-container: #f97316;
   --color-on-primary: #ffffff;
-  --color-on-primary-fixed: #071c36;
-  --color-status-critical: #e02424;
-  --color-surface-container-highest: #d5e4fa;
-  --color-secondary-container: #1b6afe;
-  --color-inverse-primary: #b5c7ea;
-  --color-surface-dim: #cddbf2;
-  --color-secondary: #0052d2;
-  --color-status-warning: #d97706;
-  --color-background: #f8f9ff;
-  --color-secondary-fixed-dim: #b3c5ff;
-  --color-primary-fixed-dim: #b5c7ea;
-  --color-on-surface: #0e1c2d;
+  --color-on-primary-container: #582200;
+  --color-primary-fixed: #ffdbca;
+  --color-primary-fixed-dim: #ffb690;
+  --color-on-primary-fixed: #341100;
+  --color-inverse-primary: #ffb690;
+
+  --color-secondary: #565e74;
+  --color-secondary-container: #dae2fd;
   --color-on-secondary: #ffffff;
-  --color-surface-container-high: #dce9ff;
-  --color-on-secondary-container: #fefcff;
-  --color-on-tertiary-container: #a4822d;
-  --color-inverse-surface: #243143;
-  --color-tertiary-container: #291d00;
-  --color-on-primary-fixed-variant: #364764;
-  --color-surface-muted: #e9ecef;
-  --color-surface-variant: #d5e4fa;
-  --color-on-error: #ffffff;
+  --color-on-secondary-container: #5c647a;
+  --color-secondary-fixed: #dae2fd;
+  --color-secondary-fixed-dim: #bec6e0;
+  --color-on-secondary-fixed: #131b2e;
+  --color-on-secondary-fixed-variant: #3f465c;
+
+  --color-tertiary: #006398;
+  --color-tertiary-container: #40a2e7;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #003655;
+  --color-tertiary-fixed: #cce5ff;
+  --color-tertiary-fixed-dim: #93ccff;
+  --color-on-tertiary-fixed: #001d31;
+  --color-on-tertiary-fixed-variant: #004b73;
+
+  --color-background: #f8f9ff;
+  --color-on-background: #0b1c30;
+
   --color-surface: #f8f9ff;
-  --color-tertiary-fixed: #ffdf9c;
-  --color-surface-subtle: #f4f6f9;
-  --color-inverse-on-surface: #eaf1ff;
+  --color-on-surface: #0b1c30;
+  --color-surface-dim: #cbdbf5;
   --color-surface-bright: #f8f9ff;
-  --color-on-secondary-fixed-variant: #003fa5;
-  --color-on-primary-container: #c8d8f4;
+  --color-surface-subtle: #f4f6f9;
+  --color-surface-canvas: #ffffff;
+  --color-surface-tint: #9d4300;
+  --color-surface-variant: #d3e4fe;
+  --color-on-surface-variant: #584237;
+
+  --color-surface-container-lowest: #ffffff;
   --color-surface-container-low: #eff4ff;
   --color-surface-container: #e5eeff;
-  --color-primary-fixed: #d6e3ff;
-  --color-tertiary: #0a0500;
+  --color-surface-container-high: #dce9ff;
+  --color-surface-container-highest: #d3e4fe;
+
+  --color-inverse-surface: #213145;
+  --color-inverse-on-surface: #eaf1ff;
+
+  --color-outline: #8c7164;
+  --color-outline-variant: #e0c0b1;
   --color-border-hairline: #d9e1ec;
-  --color-on-tertiary: #ffffff;
-  --color-outline: #75777e;
-  --color-surface-container-lowest: #ffffff;
-  --color-on-tertiary-fixed-variant: #5b4300;
+
+  --color-status-success: #0e9f6e;
+  --color-status-critical: #ba1a1a;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
 
   --spacing-space-xs: 0.25rem;
   --spacing-space-sm: 0.5rem;
@@ -97,65 +102,114 @@
   --spacing-space-lg: 1.5rem;
   --spacing-space-xl: 2.5rem;
   --spacing-space-2xl: 4rem;
-  --spacing-space-3xl: 6rem;
-  --spacing-margin: 1.5rem;
-  --spacing-margin-md: 2.5rem;
-  --spacing-margin-lg: 4rem;
+  --spacing-margin-mobile: 1rem;
+  --spacing-margin: 2rem;
+  --spacing-margin-desktop: 5rem;
+  --spacing-gutter-mobile: 1rem;
   --spacing-gutter: 1.5rem;
-  --spacing-gutter-lg: 2rem;
+}
+
+/* Transit-style Condensed Typography */
+.font-condensed {
+  font-family: var(--font-oswald), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.font-hero-condensed {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(36px, 5.5vw, 72px);
+  line-height: clamp(40px, 5.8vw, 76px);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.font-section-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: clamp(36px, 4.2vw, 58px);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.font-card-heading {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: 19px;
+  line-height: 25px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.015em;
 }
 
 /* Design System Typography Tokens */
-.font-display-xl {
+.font-display-hero {
   font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
-  font-size: clamp(34px, 5vw, 56px);
-  line-height: clamp(42px, 5.5vw, 64px);
+  font-size: clamp(34px, 4.5vw, 56px);
+  line-height: clamp(42px, 5vw, 64px);
   letter-spacing: -0.03em;
-  font-weight: 800;
+  font-weight: 700;
+}
+
+.font-display-hero-mobile {
+  font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
 }
 
 .font-headline-lg {
   font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: clamp(36px, 4.5vw, 48px);
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: clamp(34px, 3.8vw, 48px);
   letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+.font-headline-lg-mobile {
+  font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.02em;
   font-weight: 700;
 }
 
 .font-headline-md {
   font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
-  font-size: 28px;
-  line-height: 36px;
-  letter-spacing: -0.02em;
-  font-weight: 700;
+  font-size: 26px;
+  line-height: 34px;
+  letter-spacing: -0.015em;
+  font-weight: 600;
 }
 
 .font-headline-sm {
   font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
-  font-size: 22px;
-  line-height: 30px;
+  font-size: 19px;
+  line-height: 26px;
   letter-spacing: -0.01em;
   font-weight: 600;
 }
 
 .font-title-md {
   font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 17px;
+  line-height: 24px;
   letter-spacing: -0.005em;
   font-weight: 600;
 }
 
 .font-body-lg {
-  font-family: var(--font-inter), "Inter", sans-serif;
-  font-size: 18px;
-  line-height: 28px;
+  font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+  font-size: 17px;
+  line-height: 27px;
   letter-spacing: -0.005em;
   font-weight: 400;
 }
 
 .font-body-md {
-  font-family: var(--font-inter), "Inter", sans-serif;
+  font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0em;
@@ -163,10 +217,10 @@
 }
 
 .font-body-sm {
-  font-family: var(--font-inter), "Inter", sans-serif;
+  font-family: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
   font-size: 13px;
   line-height: 20px;
-  letter-spacing: 0.005em;
+  letter-spacing: 0em;
   font-weight: 400;
 }
 
@@ -175,7 +229,7 @@
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.01em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .font-label-sm {
@@ -183,13 +237,31 @@
   font-size: 11px;
   line-height: 16px;
   letter-spacing: 0.06em;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .font-code-sm {
-  font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
   font-size: 12px;
-  line-height: 18px;
+  line-height: 16px;
   letter-spacing: 0em;
   font-weight: 500;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }

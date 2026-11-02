@@ -1,116 +1,164 @@
-import { ArrowDown, Headset } from "lucide-react";
+"use client";
+
+import { ChevronLeft, ChevronRight, Phone } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { COMPANY_INFO } from "@/data/company";
 
 interface HeroSectionProps {
   onOpenConsultation?: () => void;
 }
 
+const HERO_SLIDES = [
+  {
+    title: "SECURE, SIMPLIFY, SCALE WITHOUT COMPLEXITY",
+    subtitle:
+      "WE DESIGN AND INTEGRATE NEXT-GEN SECURITY AND ELV SOLUTIONS THAT KEEP YOUR OPERATIONS PROTECTED, CONNECTED, AND READY FOR TOMORROW - DELIVERING EFFICIENCY, SCALABILITY, AND PEACE OF MIND.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop",
+    highlight: "ADMCC & SIRA CERTIFIED INTEGRATOR",
+  },
+  {
+    title: "FUTURE-READY INFRASTRUCTURE FOR COMPLEX ENTERPRISES",
+    subtitle:
+      "MISSION-CRITICAL FIBER CABLING, HIGH-DENSITY WI-FI, AND AI-POWERED SURVEILLANCE ECOSYSTEMS ACROSS ABU DHABI AND DUBAI.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2000&auto=format&fit=crop",
+    highlight: "TURNKEY ICT & BUILDING AUTOMATION",
+  },
+  {
+    title: "SEAMLESS CONNECTIVITY, ZERO COMPROMISE",
+    subtitle:
+      "PROTECTING GOVERNMENT FACILITIES, FINANCIAL HUBS, AND CRITICAL HEALTHCARE INFRASTRUCTURE WITH 24/7 PROACTIVE SLA EXCELLENCE.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2000&auto=format&fit=crop",
+    highlight: "20+ YEARS OF GCC OPERATIONAL RIGOR",
+  },
+];
+
 export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 7000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length,
+    );
+  };
+
+  const slide = HERO_SLIDES[currentSlide];
+
   return (
-    <section
-      id="overview"
-      className="relative w-full overflow-hidden bg-surface-canvas pt-8 pb-12 lg:pt-16 lg:pb-20 border-b border-border-hairline/40"
-    >
-      {/* Subtle Ambient Background Grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-30">
-        <svg
-          className="w-full h-full"
-          height="100%"
-          width="100%"
-          xmlns="http://www.w3.org/2000/svg"
+    <section className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center bg-black overflow-hidden select-none">
+      {/* Background Image Carousel with Smooth Transitions */}
+      {HERO_SLIDES.map((item, idx) => (
+        <div
+          key={item.title}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            idx === currentSlide ? "opacity-100 z-0" : "opacity-0 -z-10"
+          }`}
         >
-          <title>Circuit Grid Background Pattern</title>
-          <defs>
-            <pattern
-              height="48"
-              id="infra-grid"
-              patternUnits="userSpaceOnUse"
-              width="48"
-            >
-              <circle cx="2" cy="2" fill="#0b1f3a" fillOpacity="0.08" r="1.5" />
-              <path
-                d="M 48 0 L 0 0 0 48"
-                fill="none"
-                stroke="#0b1f3a"
-                strokeOpacity="0.04"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect fill="url(#infra-grid)" height="100%" width="100%" />
-        </svg>
-      </div>
+          <Image
+            src={item.imageUrl}
+            alt={item.title}
+            fill
+            className="object-cover object-center filter brightness-[0.4] contrast-125"
+            priority={idx === 0}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60" />
+        </div>
+      ))}
 
-      {/* Gentle Ambient Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[500px] lg:w-[640px] h-[320px] bg-secondary-fixed/20 rounded-full blur-3xl pointer-events-none -z-0" />
+      {/* Navigation Arrow Left */}
+      <button
+        type="button"
+        onClick={prevSlide}
+        aria-label="Previous Slide"
+        className="absolute left-3 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-black/40 hover:bg-black/80 text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
+      >
+        <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
+      </button>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Hero Left: Clean, Focused Typography & Actions */}
-          <div className="lg:col-span-7 space-y-6">
-            {/* Single Refined Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-subtle border border-border-hairline shadow-2xs">
-              <span className="w-2 h-2 rounded-full bg-status-success" />
-              <span className="font-label-sm text-xs text-secondary uppercase tracking-wider font-semibold">
-                Abu Dhabi Sovereign Operations • Tier-III SLA
-              </span>
-            </div>
+      {/* Navigation Arrow Right */}
+      <button
+        type="button"
+        onClick={nextSlide}
+        aria-label="Next Slide"
+        className="absolute right-3 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-black/40 hover:bg-black/80 text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer backdrop-blur-sm"
+      >
+        <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
+      </button>
 
-            {/* Primary Headline */}
-            <h1 className="font-headline-lg-mobile sm:font-display-lg lg:font-display-xl text-3xl sm:text-4xl lg:text-5xl text-primary-container tracking-tight leading-[1.15] font-extrabold">
-              Total IT Solutions.
-            </h1>
+      {/* Hero Content Container (Transit style centered uppercase) */}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 lg:py-28 text-center flex flex-col items-center">
+        {/* Subtle Government / Certification Eyebrow */}
+        <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 border border-white/20 text-white font-label-sm text-xs uppercase tracking-widest mb-6 backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-primary-container animate-pulse" />
+          <span>{slide.highlight}</span>
+        </div>
 
-            {/* Single Concise Value Proposition */}
-            <p className="font-body-md lg:font-body-lg text-body-md lg:text-body-lg text-on-surface-variant max-w-[54ch] leading-relaxed [text-wrap:pretty]">
-              Mission-critical infrastructure and managed ICT services
-              engineered for high-availability enterprise continuity across Abu
-              Dhabi, the UAE, and global markets.
-            </p>
+        {/* Transit-style Massive Bold Condensed Heading */}
+        <h1 className="font-hero-condensed text-white tracking-wide leading-tight max-w-4xl text-shadow-lg animate-in fade-in duration-500">
+          {slide.title}
+        </h1>
 
-            {/* Clean Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
-              <a
-                href="#solutions"
-                className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md shadow-sm hover:bg-secondary-container transition-all active:scale-[0.99] flex items-center justify-center gap-2"
-              >
-                <span>Explore Solutions</span>
-                <ArrowDown className="w-4 h-4" />
-              </a>
-              <button
-                type="button"
-                onClick={onOpenConsultation}
-                className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 rounded-lg bg-surface-container text-primary font-label-md text-label-md hover:bg-surface-container-high transition-all active:scale-[0.99] flex items-center justify-center gap-2 cursor-pointer border border-border-hairline"
-              >
-                <Headset className="w-4 h-4 text-secondary" />
-                <span>Talk to an Expert</span>
-              </button>
-            </div>
-          </div>
+        {/* Transit-style Centered Uppercase Subtitle */}
+        <p className="mt-6 font-body-md text-xs sm:text-sm lg:text-base text-zinc-300 font-medium tracking-wider max-w-3xl uppercase leading-relaxed text-balance">
+          {slide.subtitle}
+        </p>
 
-          {/* Hero Right: Clean, Uncluttered Visual Card */}
-          <div className="lg:col-span-5 relative">
-            <div className="relative rounded-xl lg:rounded-2xl overflow-hidden shadow-md bg-surface-canvas border border-border-hairline group">
-              <div className="relative h-60 sm:h-72 lg:aspect-[4/3] lg:h-auto w-full">
-                <Image
-                  src={COMPANY_INFO.heroImageUrl}
-                  alt="NexaCore Cloud and Data Center Architecture"
-                  fill
-                  className="object-cover transform group-hover:scale-[1.02] transition-transform duration-700"
-                  priority
-                />
-              </div>
+        {/* Dual Rectangular CTA Buttons (Transit-style sharp buttons) */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+          <button
+            type="button"
+            onClick={onOpenConsultation}
+            className="w-full sm:w-auto min-w-[200px] px-8 py-3.5 bg-black hover:bg-zinc-900 text-white border border-white/40 font-condensed text-base lg:text-lg font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-lg hover:border-white active:scale-98"
+          >
+            Talk to an Expert
+          </button>
+          <a
+            href="#solutions"
+            className="w-full sm:w-auto min-w-[200px] px-8 py-3.5 bg-white hover:bg-zinc-100 text-black font-condensed text-base lg:text-lg font-bold uppercase tracking-wider text-center transition-all duration-200 cursor-pointer shadow-lg active:scale-98"
+          >
+            Our Solutions
+          </a>
+        </div>
 
-              {/* Single Calm Status Pill on Image */}
-              <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-lg bg-primary/85 backdrop-blur-md text-white text-xs font-mono flex items-center gap-2 border border-white/10 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-status-success" />
-                <span className="tracking-wide">AUH-DC1 • Tier-III Active</span>
-              </div>
-            </div>
-          </div>
+        {/* Slide Indicators */}
+        <div className="mt-12 flex items-center gap-2.5">
+          {HERO_SLIDES.map((item, idx) => (
+            <button
+              key={item.title}
+              type="button"
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-1.5 transition-all duration-300 cursor-pointer ${
+                idx === currentSlide ? "w-8 bg-white" : "w-2 bg-white/40"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
+
+      {/* Floating Quick Action Call Button (like transit-si.com bottom right) */}
+      <a
+        href={`tel:${COMPANY_INFO.phone}`}
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-zinc-900/90 hover:bg-black text-white border border-white/20 shadow-2xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95 group backdrop-blur-md"
+        title="Direct Line to Engineer"
+        aria-label="Call Royal Arabian"
+      >
+        <Phone className="w-6 h-6 text-primary-container group-hover:rotate-12 transition-transform" />
+      </a>
     </section>
   );
 }

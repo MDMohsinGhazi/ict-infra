@@ -1,142 +1,85 @@
-import { CheckCircle2, Shield, TrendingDown } from "lucide-react";
-import Image from "next/image";
-import { COMPANY_INFO } from "@/data/company";
+import { Headphones, Layers, ShieldCheck, Wrench } from "lucide-react";
+
+const VALUE_PILLARS = [
+  {
+    icon: ShieldCheck,
+    title: "ADMCC & Regulatory Mastery",
+    description:
+      "Fully approved by Abu Dhabi Monitoring & Control Centre (ADMCC) and Dubai SIRA. Zero-compliance-risk turnkey commissioning.",
+    badge: "Government Certified",
+  },
+  {
+    icon: Layers,
+    title: "Turnkey ELV & ICT Integration",
+    description:
+      "From optical backbone cabling and CCTV video matrices to smart building BMS automation, we deliver unified single-contract execution.",
+    badge: "End-to-End Delivery",
+  },
+  {
+    icon: Headphones,
+    title: "24/7 Severity-1 SLA Response",
+    description:
+      "Direct dispatch to dedicated Abu Dhabi field engineers with guaranteed sub-4-hour emergency on-site resolution.",
+    badge: "Mission-Critical Support",
+  },
+  {
+    icon: Wrench,
+    title: "Tier-1 Global Alliances",
+    description:
+      "Direct authorized integration partnerships with leading manufacturers including Cisco, Schneider, Hikvision, Gallagher, and Microsoft.",
+    badge: "Certified OEM Partners",
+  },
+];
 
 export function WhyUsSection() {
   return (
     <section
-      className="w-full bg-surface-canvas py-12 lg:py-24 relative"
-      id="about"
+      className="w-full py-16 lg:py-24 bg-zinc-50 border-y border-zinc-200"
+      id="why-us"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-          {/* NOC Image Left Column */}
-          <div className="lg:col-span-6 order-2 lg:order-1 relative">
-            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-md border border-border-hairline group">
-              <div className="relative h-48 sm:h-64 lg:aspect-[16/10] lg:h-auto w-full">
-                <Image
-                  src={COMPANY_INFO.nocImageUrl}
-                  alt="NexaCore Operations Center in Abu Dhabi overlooking skyline"
-                  fill
-                  className="object-cover transform group-hover:scale-[1.02] transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/85 via-primary/20 to-transparent" />
-              </div>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="font-condensed text-sm tracking-widest text-zinc-500 uppercase font-semibold">
+            Operational Rigor
+          </span>
+          <h2 className="font-heading-condensed text-4xl sm:text-5xl lg:text-6xl text-zinc-900 tracking-tight leading-none uppercase mt-2">
+            Why Royal Arabian
+          </h2>
+          <p className="mt-4 font-body-md text-sm sm:text-base text-zinc-600 leading-relaxed">
+            Over two decades of proven engineering leadership across the UAE,
+            delivering complex low-voltage, telecom, and security projects on
+            time and within budget.
+          </p>
+        </div>
 
-              {/* Inset Top Badge */}
-              <div className="absolute top-3 left-3 bg-primary-container/85 backdrop-blur-md px-3 py-1.5 rounded-lg text-on-primary flex items-center gap-2 shadow-sm border border-white/10">
-                <Shield className="w-4 h-4 text-tertiary-fixed" />
-                <span className="font-code-sm text-xs font-semibold">
-                  Abu Dhabi Operations NOC • Live Telemetry
-                </span>
-              </div>
-
-              {/* Inset Bottom Live Shift Telemetry */}
-              <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-on-primary text-xs">
-                <div className="flex items-center gap-1.5">
-                  <span className="inline-block w-2 h-2 rounded-full bg-status-success" />
-                  <span className="font-code-sm text-[11px] font-semibold">
-                    AD-NOC ACTIVE · SHIFT A
-                  </span>
-                </div>
-                <span className="font-label-sm text-[11px] text-secondary-fixed">
-                  Salam HQ Desk
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom Metric Ribbon */}
-            <div className="mt-4 p-3.5 sm:p-4 rounded-xl bg-surface-subtle flex items-center justify-around shadow-xs border border-border-hairline/60">
-              <div className="text-center">
-                <span className="font-headline-sm text-lg sm:text-headline-sm text-primary-container font-bold">
-                  100%
-                </span>
-                <span className="block font-label-sm text-[10px] sm:text-label-sm text-on-surface-variant uppercase">
-                  Local Data Residency
-                </span>
-              </div>
-              <div className="h-7 w-px bg-surface-container-highest" />
-              <div className="text-center">
-                <span className="font-headline-sm text-lg sm:text-headline-sm text-primary-container font-bold">
-                  &lt; 30 min
-                </span>
-                <span className="block font-label-sm text-[10px] sm:text-label-sm text-on-surface-variant uppercase">
-                  Field Dispatch
-                </span>
-              </div>
-              <div className="h-7 w-px bg-surface-container-highest" />
-              <div className="text-center">
-                <span className="font-headline-sm text-lg sm:text-headline-sm text-secondary font-bold">
-                  Tier-1
-                </span>
-                <span className="block font-label-sm text-[10px] sm:text-label-sm text-on-surface-variant uppercase">
-                  Carrier Pipes
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Content Right Column */}
-          <div className="lg:col-span-6 order-1 lg:order-2 space-y-4 lg:space-y-6">
-            <div className="space-y-2">
-              <h2 className="font-headline-sm lg:font-headline-lg text-2xl lg:text-headline-lg text-primary-container tracking-tight font-bold">
-                Eliminate Vendor Fragmentation
-              </h2>
-              <p className="font-body-sm lg:font-body-lg text-sm lg:text-body-lg text-on-surface-variant max-w-[65ch] leading-relaxed [text-wrap:pretty]">
-                Consolidate your entire technology stack under a single
-                accountable Abu Dhabi ICT partner. One contract, one sovereign
-                NOC, and zero cross-vendor finger-pointing.
-              </p>
-            </div>
-
-            {/* 3 Key Points */}
-            <div className="flex flex-col gap-2.5 sm:gap-3 pt-1">
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-surface-subtle sm:bg-transparent hover:bg-surface-subtle transition-colors border border-border-hairline/60 sm:border-0">
-                <div className="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 text-secondary shadow-xs">
-                  <CheckCircle2 className="w-5 h-5" />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="font-label-md text-sm text-primary font-bold">
-                    Single-Point Accountability
+        {/* 4 Value Pillar Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {VALUE_PILLARS.map((pillar) => {
+            const Icon = pillar.icon;
+            return (
+              <div
+                key={pillar.title}
+                className="p-8 bg-white border border-zinc-200 hover:border-black transition-all duration-300 hover:shadow-xl flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="w-12 h-12 bg-zinc-100 group-hover:bg-black group-hover:text-white text-zinc-900 flex items-center justify-center transition-colors mb-6">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-heading-condensed text-xl sm:text-2xl text-zinc-900 tracking-wide uppercase leading-tight">
+                    {pillar.title}
                   </h3>
-                  <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed [text-wrap:pretty]">
-                    Consolidated SLA covering cloud, hardware, ISP pipes, and
-                    cyber defenses with guaranteed resolution times.
+                  <p className="mt-3 font-body-sm text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                    {pillar.description}
                   </p>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-surface-subtle sm:bg-transparent hover:bg-surface-subtle transition-colors border border-border-hairline/60 sm:border-0">
-                <div className="w-9 h-9 rounded-full bg-tertiary-fixed flex items-center justify-center shrink-0 text-on-tertiary-fixed shadow-xs">
-                  <Shield className="w-5 h-5" />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="font-label-md text-sm text-primary font-bold">
-                    UAE Sovereign Compliance
-                  </h3>
-                  <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed [text-wrap:pretty]">
-                    Certified under TDRA and ADGM data storage regulations with
-                    in-country data residency guaranteed.
-                  </p>
+                <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-condensed uppercase tracking-wider text-primary-container font-bold">
+                  <span>{pillar.badge}</span>
+                  <span>&rarr;</span>
                 </div>
               </div>
-
-              <div className="flex items-start gap-3 p-3 rounded-xl bg-surface-subtle sm:bg-transparent hover:bg-surface-subtle transition-colors border border-border-hairline/60 sm:border-0">
-                <div className="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0 text-secondary shadow-xs">
-                  <TrendingDown className="w-5 h-5" />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="font-label-md text-sm text-primary font-bold">
-                    Predictable OPEX Model
-                  </h3>
-                  <p className="font-body-sm text-xs text-on-surface-variant leading-relaxed [text-wrap:pretty]">
-                    Shift massive capital expenditures into stable, transparent
-                    monthly operating expenses with zero hidden surcharges.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

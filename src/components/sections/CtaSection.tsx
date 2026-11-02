@@ -1,193 +1,287 @@
 "use client";
 
-import {
-  Building,
-  CheckCircle2,
-  FileText,
-  Mail,
-  MapPin,
-  Phone,
-  Send,
-} from "lucide-react";
+import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { COMPANY_INFO } from "@/data/company";
 
-interface CtaSectionProps {
-  onOpenConsultation?: () => void;
-}
+export function CtaSection() {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    solution: "CCTV Video Surveillance & ADMCC Analytics",
+    message: "",
+  });
 
-export function CtaSection({ onOpenConsultation }: CtaSectionProps) {
-  const [isQuickQuoteOpen, setIsQuickQuoteOpen] = useState(false);
-  const [quickSubmitted, setQuickSubmitted] = useState(false);
-  const [quickCompany, setQuickCompany] = useState("");
-  const [quickEmail, setQuickEmail] = useState("");
-
-  const handleQuickSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setQuickSubmitted(true);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSubmitted(true);
+    }, 600);
   };
 
   return (
-    <div id="contact" className="w-full">
-      {/* Primary CTA Card */}
-      <section className="px-4 sm:px-6 lg:px-12 py-6 lg:py-12 max-w-7xl mx-auto">
-        <div className="rounded-xl lg:rounded-2xl bg-primary text-on-primary p-6 sm:p-8 lg:p-12 shadow-lg relative overflow-hidden flex flex-col gap-6 border border-white/10">
-          {/* Gold Gradient Border Line at top */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-tertiary-fixed via-secondary-container to-tertiary-fixed" />
-
-          <div className="relative z-10 max-w-3xl space-y-2 lg:space-y-3">
-            <h2 className="font-headline-sm lg:font-display-xl text-2xl lg:text-display-xl text-on-primary tracking-tight font-bold">
-              Let&apos;s build your sovereign infrastructure.
+    <section
+      className="w-full py-16 lg:py-24 bg-zinc-50 border-t border-zinc-200"
+      id="contact"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Side: Contact Information (Transit style) */}
+          <div className="lg:col-span-5 flex flex-col items-start">
+            <span className="font-condensed text-sm tracking-widest text-zinc-500 uppercase font-semibold mb-2">
+              Contact With Us
+            </span>
+            <h2 className="font-heading-condensed text-4xl sm:text-5xl lg:text-6xl text-zinc-900 tracking-tight leading-none uppercase mb-6">
+              Drop a Message to Our Team
             </h2>
-            <p className="font-body-sm lg:font-body-lg text-sm lg:text-body-lg text-secondary-fixed max-w-[65ch] leading-relaxed [text-wrap:pretty]">
-              Connect directly with our Abu Dhabi enterprise systems architects
-              for an on-premise or sovereign cloud architecture audit.
+            <p className="font-body-md text-sm sm:text-base text-zinc-600 leading-relaxed mb-8">
+              Whether you need an ADMCC compliant CCTV design, data center
+              structured cabling, or annual maintenance for your enterprise
+              facility, our Abu Dhabi engineering team is ready to assist.
             </p>
+
+            <div className="space-y-6 w-full">
+              {/* Phone */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-black text-white flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-primary-container" />
+                </div>
+                <div>
+                  <span className="font-condensed text-xs uppercase tracking-wider text-zinc-400 font-bold block">
+                    Direct Phone Line
+                  </span>
+                  <a
+                    href={`tel:${COMPANY_INFO.phone}`}
+                    className="font-heading-condensed text-xl text-zinc-900 hover:text-primary-container font-bold tracking-wide transition-colors"
+                  >
+                    {COMPANY_INFO.phone}
+                  </a>
+                  <div className="text-xs text-zinc-500 mt-0.5">
+                    Mobiles: {COMPANY_INFO.mobiles.join(" • ")}
+                  </div>
+                </div>
+              </div>
+
+              {/* Email */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-black text-white flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5 text-primary-container" />
+                </div>
+                <div>
+                  <span className="font-condensed text-xs uppercase tracking-wider text-zinc-400 font-bold block">
+                    Official Inquiries
+                  </span>
+                  <a
+                    href={`mailto:${COMPANY_INFO.email}`}
+                    className="font-heading-condensed text-xl text-zinc-900 hover:text-primary-container font-bold tracking-wide transition-colors"
+                  >
+                    {COMPANY_INFO.email}
+                  </a>
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-black text-white flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-primary-container" />
+                </div>
+                <div>
+                  <span className="font-condensed text-xs uppercase tracking-wider text-zinc-400 font-bold block">
+                    Headquarters
+                  </span>
+                  <p className="font-body-sm text-sm text-zinc-800 font-medium">
+                    {COMPANY_INFO.address}
+                  </p>
+                </div>
+              </div>
+
+              {/* Turnaround Guarantee */}
+              <div className="p-4 bg-white border border-zinc-200 flex items-center gap-3">
+                <Clock className="w-5 h-5 text-primary-container shrink-0" />
+                <span className="font-condensed text-xs uppercase tracking-wider text-zinc-700 font-semibold">
+                  Guaranteed response time: Under 4 business hours
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="relative z-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm hover:bg-secondary-container transition-all active:scale-[0.99] font-semibold"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Call {COMPANY_INFO.phone}</span>
-            </a>
+          {/* Right Side: Inquiry Form (Transit style) */}
+          <div className="lg:col-span-7 bg-white p-8 sm:p-10 border border-zinc-200 shadow-xl">
+            {submitted ? (
+              <div className="py-12 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-10 h-10" />
+                </div>
+                <h3 className="font-heading-condensed text-3xl text-zinc-900 font-bold uppercase">
+                  Message Dispatched
+                </h3>
+                <p className="font-body-md text-sm sm:text-base text-zinc-600 max-w-md mx-auto">
+                  Thank you for reaching out. A senior technical engineer from
+                  our Abu Dhabi headquarters will review your requirements and
+                  phone you shortly.
+                </p>
+                <div className="pt-4">
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="px-8 py-3 bg-black text-white font-condensed text-base font-bold uppercase tracking-wider hover:bg-zinc-800 transition-colors cursor-pointer"
+                  >
+                    Send Another Message
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Name */}
+                  <div>
+                    <label
+                      className="block font-condensed text-xs uppercase tracking-wider text-zinc-700 font-bold mb-1.5"
+                      htmlFor="contact-name"
+                    >
+                      Name *
+                    </label>
+                    <input
+                      id="contact-name"
+                      required
+                      type="text"
+                      placeholder="e.g. Tariq Al Nuaimi"
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
+                      className="w-full h-12 px-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
 
-            <button
-              type="button"
-              onClick={() => {
-                // On mobile toggle quick drawer, or trigger modal if wide
-                if (window.innerWidth < 768) {
-                  setIsQuickQuoteOpen(!isQuickQuoteOpen);
-                } else if (onOpenConsultation) {
-                  onOpenConsultation();
-                }
-              }}
-              className="w-full sm:w-auto min-h-[48px] px-6 py-3.5 rounded-lg bg-on-primary/10 text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-on-primary/15 transition-all cursor-pointer border border-white/15 font-semibold"
-            >
-              <FileText className="w-4 h-4 text-tertiary-fixed" />
-              <span>
-                {isQuickQuoteOpen
-                  ? "Hide Quick Form"
-                  : "Request Architecture Consultation"}
-              </span>
-            </button>
-          </div>
+                  {/* Email */}
+                  <div>
+                    <label
+                      className="block font-condensed text-xs uppercase tracking-wider text-zinc-700 font-bold mb-1.5"
+                      htmlFor="contact-email"
+                    >
+                      Email *
+                    </label>
+                    <input
+                      id="contact-email"
+                      required
+                      type="email"
+                      placeholder="e.g. tariq@company.ae"
+                      value={formData.email}
+                      onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                      }
+                      className="w-full h-12 px-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+                </div>
 
-          {/* Interactive Mobile Micro-Form Drawer (Expandable) */}
-          {isQuickQuoteOpen && (
-            <div className="relative z-10 pt-2 animate-in fade-in slide-in-from-top-2 duration-200">
-              <form
-                onSubmit={handleQuickSubmit}
-                className="p-4 rounded-xl bg-on-primary/5 border border-white/10 flex flex-col gap-3"
-              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  {/* Phone */}
+                  <div>
+                    <label
+                      className="block font-condensed text-xs uppercase tracking-wider text-zinc-700 font-bold mb-1.5"
+                      htmlFor="contact-phone"
+                    >
+                      Phone Number *
+                    </label>
+                    <input
+                      id="contact-phone"
+                      required
+                      type="tel"
+                      placeholder="+971 50 XXX XXXX"
+                      value={formData.phone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, phone: e.target.value })
+                      }
+                      className="w-full h-12 px-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:outline-none focus:border-black transition-colors"
+                    />
+                  </div>
+
+                  {/* Solution Dropdown */}
+                  <div>
+                    <label
+                      className="block font-condensed text-xs uppercase tracking-wider text-zinc-700 font-bold mb-1.5"
+                      htmlFor="contact-solution"
+                    >
+                      Select Solution You Are Looking For *
+                    </label>
+                    <select
+                      id="contact-solution"
+                      value={formData.solution}
+                      onChange={(e) =>
+                        setFormData({ ...formData, solution: e.target.value })
+                      }
+                      className="w-full h-12 px-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:outline-none focus:border-black transition-colors"
+                    >
+                      <option>
+                        CCTV Video Surveillance &amp; ADMCC Analytics
+                      </option>
+                      <option>Access Control &amp; Biometrics</option>
+                      <option>Public Address &amp; Voice Alarm (PA/VA)</option>
+                      <option>
+                        Industrial Sensors &amp; Explosion Protection
+                      </option>
+                      <option>EV Charging Solutions</option>
+                      <option>UPS &amp; Inverter Power Systems</option>
+                      <option>Master Clock System Solutions</option>
+                      <option>Structured Cabling &amp; Fiber Optics</option>
+                      <option>Smart Building Automation &amp; BMS</option>
+                      <option>Annual Maintenance Contract (AMC 24/7)</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Message */}
                 <div>
                   <label
-                    htmlFor="quick-company"
-                    className="block font-label-sm text-xs text-secondary-fixed mb-1"
+                    className="block font-condensed text-xs uppercase tracking-wider text-zinc-700 font-bold mb-1.5"
+                    htmlFor="contact-message"
                   >
-                    Company / Entity *
+                    Message / Project Details
                   </label>
-                  <input
-                    id="quick-company"
-                    required
-                    type="text"
-                    value={quickCompany}
-                    onChange={(e) => setQuickCompany(e.target.value)}
-                    placeholder="e.g. ADNOC Logistics / AD Ports"
-                    className="w-full h-11 px-3 rounded-lg bg-surface text-primary font-body-sm text-sm placeholder:text-outline focus:outline-none"
+                  <textarea
+                    id="contact-message"
+                    rows={4}
+                    placeholder="Tell us about your facility size, number of endpoints, or required completion dates..."
+                    value={formData.message}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
+                    className="w-full p-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:outline-none focus:border-black transition-colors"
                   />
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="quick-email"
-                    className="block font-label-sm text-xs text-secondary-fixed mb-1"
-                  >
-                    Direct Work Email *
-                  </label>
-                  <input
-                    id="quick-email"
-                    required
-                    type="email"
-                    value={quickEmail}
-                    onChange={(e) => setQuickEmail(e.target.value)}
-                    placeholder="chief.officer@domain.ae"
-                    className="w-full h-11 px-3 rounded-lg bg-surface text-primary font-body-sm text-sm placeholder:text-outline focus:outline-none"
-                  />
-                </div>
-
+                {/* Submit Button (Transit style) */}
                 <button
                   type="submit"
-                  disabled={quickSubmitted}
-                  className="mt-1 w-full h-11 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-sm font-bold flex items-center justify-center gap-1.5 shadow-sm hover:bg-tertiary-fixed-dim transition-colors disabled:opacity-80"
+                  disabled={loading}
+                  className="w-full py-4 bg-black hover:bg-zinc-800 text-white font-condensed text-lg uppercase tracking-wider font-bold transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-lg active:scale-98 disabled:opacity-70"
                 >
-                  {quickSubmitted ? (
-                    <>
-                      <span>Consultation Requested</span>
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                    </>
+                  {loading ? (
+                    <span>Transmitting...</span>
                   ) : (
                     <>
-                      <span>Submit Dispatch</span>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-5 h-5" />
+                      <span>Drop Message</span>
                     </>
                   )}
                 </button>
+
+                <p className="font-condensed text-[11px] text-center text-zinc-500 uppercase tracking-wider">
+                  NDAs respected for all critical infrastructure and government
+                  tenders.
+                </p>
               </form>
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Head Office & Sovereign Footprint Panel */}
-      <section className="px-4 sm:px-6 lg:px-12 pb-6 max-w-7xl mx-auto">
-        <div className="rounded-xl p-4 sm:p-6 bg-surface-container flex flex-col gap-4 border border-border-hairline">
-          <div className="flex items-center gap-2">
-            <Building className="w-5 h-5 text-secondary" />
-            <span className="font-label-md text-sm sm:text-base text-primary font-bold">
-              NexaCore ICT Head Office
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-body-sm text-xs sm:text-sm text-on-surface-variant">
-            <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <span>{COMPANY_INFO.address}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-primary shrink-0" />
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="text-secondary font-semibold hover:underline"
-              >
-                {COMPANY_INFO.phone}
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-primary shrink-0" />
-              <a
-                href={`mailto:${COMPANY_INFO.email}`}
-                className="text-secondary hover:underline"
-              >
-                {COMPANY_INFO.email}
-              </a>
-            </div>
-          </div>
-
-          {/* Regional Footprint Tag */}
-          <div className="pt-1 flex flex-col sm:flex-row items-start sm:items-center justify-between rounded-lg p-3 bg-surface-canvas shadow-xs border border-border-hairline gap-2">
-            <span className="font-label-sm text-xs text-on-surface-variant uppercase tracking-wider font-semibold">
-              Global Gateway
-            </span>
-            <span className="font-code-sm text-xs text-primary font-bold tracking-wider">
-              {COMPANY_INFO.internationalPresence.join(" | ")}
-            </span>
+            )}
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

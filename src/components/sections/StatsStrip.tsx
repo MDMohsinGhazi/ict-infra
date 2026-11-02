@@ -1,116 +1,115 @@
-import { Gauge } from "lucide-react";
-import { STATS_DATA } from "@/data/stats";
+import { Award, ShieldCheck } from "lucide-react";
+
+const STATS = [
+  { value: "120+", label: "EMPLOYEES" },
+  { value: "8,041+", label: "PROJECTS" },
+  { value: "1,147+", label: "HAPPY CLIENTS" },
+  { value: "20+", label: "YEARS OF EXPERIENCE" },
+  { value: "75+", label: "GLOBAL PARTNERS" },
+];
+
+const CERTIFICATIONS = [
+  {
+    title: "ADMCC Abu Dhabi",
+    subtext: "Approved Surveillance Integrator",
+    badge: "ADMCC",
+    type: "gov",
+  },
+  {
+    title: "Hemaya System",
+    subtext: "Security Service Approval",
+    badge: "HEMAYA",
+    type: "gov",
+  },
+  {
+    title: "SIRA Certified",
+    subtext: "Security Industry Regulatory Agency",
+    badge: "SIRA",
+    type: "gov",
+  },
+  {
+    title: "ISO 45001:2018",
+    subtext: "Health & Safety Management",
+    badge: "ISO 45001",
+    type: "iso",
+  },
+  {
+    title: "ISO 14001:2015",
+    subtext: "Environmental Management",
+    badge: "ISO 14001",
+    type: "iso",
+  },
+  {
+    title: "ISO 9001:2015",
+    subtext: "Quality Management System (QMS)",
+    badge: "ISO 9001",
+    type: "iso",
+  },
+  {
+    title: "ADNOC ICV Certified",
+    subtext: "In-Country Value Approved",
+    badge: "ADNOC ICV",
+    type: "gov",
+  },
+];
 
 export function StatsStrip() {
   return (
-    <section className="w-full bg-primary-container text-on-primary shadow-xl relative z-20 py-4 lg:py-0">
-      {/* Desktop Gold Accent Borders */}
-      <div className="hidden lg:block h-[2px] w-full bg-tertiary-fixed-dim/80" />
+    <section
+      className="w-full py-16 lg:py-24 bg-black text-white relative overflow-hidden"
+      id="certifications"
+    >
+      {/* Background Subtle Gradient Glow */}
+      <div className="absolute inset-0 bg-radial from-zinc-900/40 via-transparent to-transparent pointer-events-none" />
 
-      {/* Mobile Card Layout (Visible < md) */}
-      <div className="md:hidden px-4">
-        <div className="relative rounded-xl p-4 sm:p-5 bg-primary-container text-on-primary shadow-md overflow-hidden border border-white/10">
-          {/* Decorative Accent Bar */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-tertiary-fixed via-secondary-container to-tertiary-fixed" />
-          <div className="flex items-center justify-between pb-3">
-            <div className="flex items-center gap-2">
-              <Gauge className="w-5 h-5 text-tertiary-fixed" />
-              <span className="font-label-sm text-label-sm uppercase tracking-wider text-secondary-fixed font-bold">
-                Sovereign Performance
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* 5-Column Stats Row (Transit style) */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-6 text-center border-b border-white/10 pb-16">
+          {STATS.map((stat) => (
+            <div key={stat.label} className="flex flex-col items-center">
+              <span className="font-hero-condensed text-4xl sm:text-5xl lg:text-6xl text-white font-bold tracking-tight">
+                {stat.value}
+              </span>
+              <span className="font-condensed text-xs sm:text-sm text-zinc-400 font-semibold tracking-widest mt-2 uppercase">
+                {stat.label}
               </span>
             </div>
-            <span className="font-code-sm text-[11px] text-tertiary-fixed font-semibold tracking-wide px-2 py-0.5 rounded bg-white/5 border border-white/10">
-              REAL-TIME
-            </span>
-          </div>
-
-          {/* 2x2 Grid of Key Stats */}
-          <div className="grid grid-cols-2 gap-2.5 pt-1">
-            <div className="p-3 rounded-lg bg-primary/40 flex flex-col gap-0.5 border border-white/5">
-              <span className="font-headline-md text-2xl text-on-primary tracking-tight font-bold">
-                99.999%
-              </span>
-              <span className="font-body-sm text-xs text-secondary-fixed font-medium">
-                Uptime SLA
-              </span>
-              <span className="font-code-sm text-[10px] text-on-primary-container">
-                Dual redundant grid
-              </span>
-            </div>
-
-            <div className="p-3 rounded-lg bg-primary/40 flex flex-col gap-0.5 border border-white/5">
-              <div className="flex items-baseline gap-1">
-                <span className="font-headline-md text-2xl text-tertiary-fixed tracking-tight font-bold">
-                  15
-                </span>
-                <span className="font-label-md text-xs text-tertiary-fixed font-semibold">
-                  ms
-                </span>
-              </div>
-              <span className="font-body-sm text-xs text-secondary-fixed font-medium">
-                Failover Response
-              </span>
-              <span className="font-code-sm text-[10px] text-on-primary-container">
-                Sub-second link sync
-              </span>
-            </div>
-
-            <div className="p-3 rounded-lg bg-primary/40 flex flex-col gap-0.5 border border-white/5">
-              <span className="font-headline-md text-2xl text-on-primary tracking-tight font-bold">
-                4,500+
-              </span>
-              <span className="font-body-sm text-xs text-secondary-fixed font-medium">
-                Facilities Deployed
-              </span>
-              <span className="font-code-sm text-[10px] text-on-primary-container">
-                GCC &amp; international
-              </span>
-            </div>
-
-            <div className="p-3 rounded-lg bg-primary/40 flex flex-col gap-0.5 border border-white/5">
-              <span className="font-headline-md text-2xl text-status-success tracking-tight font-bold">
-                24/7
-              </span>
-              <span className="font-body-sm text-xs text-secondary-fixed font-medium">
-                Abu Dhabi NOC
-              </span>
-              <span className="font-code-sm text-[10px] text-on-primary-container">
-                Tier-III sovereign desk
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
-      </div>
 
-      {/* Desktop / Tablet Grid (Visible md+) */}
-      <div className="hidden md:block max-w-7xl mx-auto px-6 lg:px-12 py-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 divide-y md:divide-y-0 md:divide-x divide-on-primary-container/20">
-          {STATS_DATA.map((item, index) => (
+        {/* Pursuit of Excellence Text */}
+        <div className="mt-14 max-w-3xl mx-auto text-center">
+          <p className="font-condensed text-sm sm:text-base lg:text-lg text-zinc-300 uppercase tracking-wider leading-relaxed">
+            We take pride in our continuous pursuit of excellence. Our
+            dedication to quality, safety, and sustainability is reflected in
+            the globally recognized certifications we&apos;ve earned.
+          </p>
+        </div>
+
+        {/* Accreditations Badges Grid / Row */}
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3 sm:gap-4 items-stretch">
+          {CERTIFICATIONS.map((cert) => (
             <div
-              key={item.id}
-              className={`flex flex-col items-center md:items-start pt-4 md:pt-0 ${
-                index === 0 ? "md:pr-4" : "md:px-4"
-              }`}
+              key={cert.title}
+              className="p-4 rounded-lg bg-zinc-900/80 hover:bg-zinc-800/90 border border-white/10 flex flex-col items-center text-center justify-center transition-all hover:border-white/30 group"
             >
-              <span className="font-label-sm text-label-sm uppercase tracking-widest text-tertiary-fixed mb-1 font-bold">
-                {item.label}
+              <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center mb-2.5 border border-white/10 group-hover:scale-105 transition-transform">
+                {cert.type === "gov" ? (
+                  <ShieldCheck className="w-5 h-5 text-primary-container" />
+                ) : (
+                  <Award className="w-5 h-5 text-sky-400" />
+                )}
+              </div>
+              <span className="font-condensed text-xs sm:text-sm text-white font-bold tracking-wider uppercase">
+                {cert.title}
               </span>
-              <span
-                className={`font-display-xl text-display-xl tracking-tight ${
-                  item.highlight ? "text-secondary-fixed" : "text-on-primary"
-                }`}
-              >
-                {item.metric}
-              </span>
-              <span className="font-body-sm text-body-sm text-on-primary-container mt-1">
-                {item.subtext}
+              <span className="font-label-sm text-[10px] text-zinc-400 mt-1 leading-tight line-clamp-2">
+                {cert.subtext}
               </span>
             </div>
           ))}
         </div>
       </div>
-
-      <div className="hidden lg:block h-[2px] w-full bg-tertiary-fixed-dim/80" />
     </section>
   );
 }
