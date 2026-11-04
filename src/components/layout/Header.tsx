@@ -1,7 +1,9 @@
 "use client";
 
 import { ChevronRight, Mail, MapPin, Menu, Phone, X } from "lucide-react";
-import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { COMPANY_INFO } from "@/data/company";
 import { NAV_LINKS } from "@/data/navigation";
 
@@ -11,36 +13,52 @@ interface HeaderProps {
 
 export function Header({ onOpenQuote }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 pt-safe bg-[#050505]/95 backdrop-blur-xl border-b border-white/10 shadow-lg">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 pt-safe transition-all duration-300 ${
+        isScrolled
+          ? "bg-[#030303]/98 backdrop-blur-xl border-b border-white/15 shadow-2xl"
+          : "bg-[#050505]/90 backdrop-blur-md border-b border-white/10 shadow-lg"
+      }`}
+    >
       {/* Mobile Bar (< lg) */}
       <div className="lg:hidden h-16 px-4 flex items-center justify-between gap-2">
-        <a href="/" className="flex items-center gap-2 min-w-0">
-          <div className="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-white font-bold font-condensed text-lg">
-            RA
-          </div>
-          <div className="flex flex-col min-w-0">
-            <span className="font-condensed text-base text-white tracking-wider font-bold truncate">
-              {COMPANY_INFO.name}
-            </span>
-            <span className="font-label-sm text-[10px] text-zinc-400 uppercase tracking-widest leading-none truncate">
-              Smart Technologies LLC
-            </span>
-          </div>
+        <a href="/" className="flex items-center gap-2 min-w-0 py-1">
+          <Image
+            src="/images/royal-arabian-logo-dark.png"
+            alt={COMPANY_INFO.legalName}
+            width={170}
+            height={60}
+            className="h-9 w-auto object-contain"
+            priority
+          />
         </a>
 
         <div className="flex items-center gap-2 shrink-0">
-          <a
+          <motion.a
             aria-label="Direct Phone Line"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
             className="w-9 h-9 rounded-full bg-zinc-800 text-white flex items-center justify-center hover:bg-zinc-700 transition-colors"
             href={`tel:${COMPANY_INFO.phone}`}
             title="Call Us"
           >
             <Phone className="w-4 h-4 text-primary-container" />
-          </a>
-          <button
+          </motion.a>
+          <motion.button
             type="button"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="w-9 h-9 rounded-lg bg-zinc-800 text-white flex items-center justify-center hover:bg-zinc-700 transition-colors cursor-pointer"
             aria-label="Toggle Navigation Menu"
@@ -50,7 +68,7 @@ export function Header({ onOpenQuote }: HeaderProps) {
             ) : (
               <Menu className="w-5 h-5 text-white" />
             )}
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -89,21 +107,18 @@ export function Header({ onOpenQuote }: HeaderProps) {
       {/* Desktop Main App Bar (lg+) */}
       <div className="hidden lg:flex h-20 max-w-7xl mx-auto px-6 items-center justify-between gap-6">
         {/* Brand */}
-        <a href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-white font-bold font-condensed text-xl shadow-md group-hover:scale-105 transition-transform">
-            RA
-          </div>
-          <div className="flex flex-col">
-            <span className="font-condensed text-2xl text-white tracking-wider font-bold leading-tight group-hover:text-primary-container transition-colors">
-              {COMPANY_INFO.name}
-            </span>
-            <span className="font-label-sm text-[10px] text-zinc-400 tracking-widest uppercase font-semibold leading-none">
-              Smart Technologies LLC • UAE
-            </span>
-          </div>
+        <a href="/" className="flex items-center gap-3 group py-1">
+          <Image
+            src="/images/royal-arabian-logo-dark.png"
+            alt={COMPANY_INFO.legalName}
+            width={260}
+            height={92}
+            className="h-12 w-auto object-contain group-hover:brightness-110 transition-all"
+            priority
+          />
         </a>
 
-        {/* Desktop Navigation (Transit style condensed uppercase) */}
+        {/* Desktop Navigation */}
         <nav
           className="flex items-center gap-6 xl:gap-8"
           aria-label="Main Navigation"
@@ -121,60 +136,85 @@ export function Header({ onOpenQuote }: HeaderProps) {
 
         {/* Action Controls */}
         <div className="flex items-center gap-4">
-          <a
+          <motion.a
             href={`tel:${COMPANY_INFO.phone}`}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
             title="Direct Phone Line"
           >
             <Phone className="w-4 h-4 text-primary-container" />
-          </a>
-          <button
+          </motion.a>
+          <motion.button
             type="button"
             onClick={onOpenQuote}
-            className="h-10 px-6 rounded-none bg-primary-container hover:bg-primary text-white font-condensed text-base font-bold tracking-wider uppercase transition-all active:scale-[0.98] cursor-pointer shadow-md"
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.98 }}
+            className="h-10 px-6 rounded-none bg-primary-container hover:bg-primary text-white font-condensed text-base font-bold tracking-wider uppercase transition-colors cursor-pointer shadow-md"
           >
             Talk to an Expert
-          </button>
+          </motion.button>
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-[#0a0a0a]/98 backdrop-blur-xl border-b border-white/10 px-6 py-6 animate-in slide-in-from-top-4 duration-200">
-          <nav className="flex flex-col gap-3">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="font-condensed text-lg uppercase tracking-wider font-bold text-zinc-200 hover:text-white py-2.5 border-b border-white/10 transition-colors flex items-center justify-between"
-              >
-                <span>{link.label}</span>
-                <ChevronRight className="w-4 h-4 text-primary-container" />
-              </a>
-            ))}
-            <div className="pt-4 flex flex-col gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenQuote();
-                }}
-                className="w-full py-3 rounded-none bg-primary-container text-white font-condensed text-base uppercase font-bold tracking-wider text-center hover:bg-primary transition-all cursor-pointer"
-              >
-                Talk to an Expert
-              </button>
-              <a
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="w-full py-2.5 rounded-none border border-white/20 text-white font-condensed text-sm uppercase font-semibold tracking-wider text-center flex items-center justify-center gap-2"
-              >
-                <Phone className="w-4 h-4 text-primary-container" />
-                <span>Call {COMPANY_INFO.phone}</span>
-              </a>
-            </div>
-          </nav>
-        </div>
-      )}
+      {/* Mobile Drawer Menu with Fluid Animation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:hidden bg-[#0a0a0a]/98 backdrop-blur-xl border-b border-white/10 px-6 py-6 overflow-hidden"
+          >
+            <nav className="flex flex-col gap-3">
+              <div className="pb-3 border-b border-white/10 flex items-center justify-between">
+                <Image
+                  src="/images/royal-arabian-logo-dark.png"
+                  alt={COMPANY_INFO.legalName}
+                  width={150}
+                  height={53}
+                  className="h-8 w-auto object-contain"
+                />
+                <span className="font-mono text-[10px] text-zinc-400 uppercase tracking-widest">
+                  EST. 2007 • UAE
+                </span>
+              </div>
+              {NAV_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="font-condensed text-lg uppercase tracking-wider font-bold text-zinc-200 hover:text-white py-2.5 border-b border-white/10 transition-colors flex items-center justify-between"
+                >
+                  <span>{link.label}</span>
+                  <ChevronRight className="w-4 h-4 text-primary-container" />
+                </a>
+              ))}
+              <div className="pt-4 flex flex-col gap-3">
+                <motion.button
+                  type="button"
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenQuote();
+                  }}
+                  className="w-full py-3 rounded-none bg-primary-container text-white font-condensed text-base uppercase font-bold tracking-wider text-center hover:bg-primary transition-all cursor-pointer"
+                >
+                  Talk to an Expert
+                </motion.button>
+                <a
+                  href={`tel:${COMPANY_INFO.phone}`}
+                  className="w-full py-2.5 rounded-none border border-white/20 text-white font-condensed text-sm uppercase font-semibold tracking-wider text-center flex items-center justify-center gap-2"
+                >
+                  <Phone className="w-4 h-4 text-primary-container" />
+                  <span>Call {COMPANY_INFO.phone}</span>
+                </a>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

@@ -1,45 +1,68 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Building2,
+  ChevronLeft,
+  ChevronRight,
+  Factory,
+  Flame,
+  GraduationCap,
+  HeartPulse,
+  Landmark,
+} from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useRef } from "react";
+import { FadeIn } from "@/components/ui/MotionWrappers";
 
 const INDUSTRIES_DATA = [
   {
     title: "EDUCATION",
+    code: "SEC-EDU",
     subtitle: "Universities, K-12 Academies & Smart Campuses",
-    imageUrl:
-      "https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=800&auto=format&fit=crop",
+    compliance: "High-Density Wi-Fi & Campus CCTV",
+    icon: GraduationCap,
+    imageUrl: "/images/sector-education.jpg",
   },
   {
     title: "HEALTHCARE",
+    code: "SEC-MED",
     subtitle: "Hospitals, Medical Towers & Clean-Room Clinics",
-    imageUrl:
-      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=800&auto=format&fit=crop",
+    compliance: "Nurse Call & Life-Safety PA/VA",
+    icon: HeartPulse,
+    imageUrl: "/images/sector-healthcare.jpg",
   },
   {
     title: "FINANCIAL INSTITUTIONS",
+    code: "SEC-FIN",
     subtitle: "Banking HQs, Data Vaults & Trading Floors",
-    imageUrl:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    compliance: "Biometric Access & High-Sec Vaults",
+    icon: Landmark,
+    imageUrl: "/images/sector-financial.jpg",
   },
   {
     title: "INDUSTRIAL & MANUFACTURING",
+    code: "SEC-IND",
     subtitle: "Factories, Warehouses & Port Logistics",
-    imageUrl:
-      "https://images.unsplash.com/photo-1581092335397-9583fe92d232?q=80&w=800&auto=format&fit=crop",
+    compliance: "Gate Barriers & Perimeter Analytics",
+    icon: Factory,
+    imageUrl: "/images/sector-industrial.jpg",
   },
   {
     title: "OIL & GAS / OFFSHORE",
+    code: "SEC-PET",
     subtitle: "ADNOC Fields, Refineries & Hazardous Zones",
-    imageUrl:
-      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop",
+    compliance: "IECEx / ATEX Explosion-Proof Telemetry",
+    icon: Flame,
+    imageUrl: "/images/sector-oil-gas.jpg",
   },
   {
     title: "HOSPITALITY & RETAIL",
+    code: "SEC-HSP",
     subtitle: "5-Star Resorts, Shopping Malls & Mixed-Use Towers",
-    imageUrl:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop",
+    compliance: "DALI Smart Lighting & BMS Automation",
+    icon: Building2,
+    imageUrl: "/images/sector-hospitality.jpg",
   },
 ];
 
@@ -59,75 +82,108 @@ export function SectorsSection() {
   };
 
   return (
-    <section className="w-full py-16 lg:py-24 bg-white" id="sectors">
+    <section
+      className="w-full py-20 lg:py-28 bg-[#fafbfe] border-y border-zinc-200 overflow-hidden relative"
+      id="sectors"
+    >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="flex flex-col items-start">
-            <h2 className="font-section-heading text-zinc-900 tracking-tight leading-none uppercase">
-              Industries We Serve
-            </h2>
-            <p className="mt-2 font-condensed text-sm sm:text-base text-zinc-500 uppercase tracking-widest font-semibold">
-              Engineered for Mission-Critical Environments Across the UAE
-            </p>
-          </div>
-
-          {/* Slider Arrow Controls */}
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={scrollLeft}
-              className="w-10 h-10 rounded-full border border-zinc-300 hover:border-black flex items-center justify-center text-zinc-700 hover:text-black transition-colors cursor-pointer"
-              aria-label="Previous Industries"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              type="button"
-              onClick={scrollRight}
-              className="w-10 h-10 rounded-full border border-zinc-300 hover:border-black flex items-center justify-center text-zinc-700 hover:text-black transition-colors cursor-pointer"
-              aria-label="Next Industries"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Industries Photo Cards with Centered Dark Box (Transit style) */}
-        <div
-          ref={scrollContainerRef}
-          className="flex items-stretch gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {INDUSTRIES_DATA.map((ind) => (
-            <div
-              key={ind.title}
-              className="w-[300px] sm:w-[340px] h-[340px] sm:h-[380px] flex-shrink-0 snap-start relative group overflow-hidden border border-zinc-200 cursor-pointer shadow-md hover:shadow-xl transition-all duration-300"
-            >
-              {/* Background Photo */}
-              <Image
-                src={ind.imageUrl}
-                alt={ind.title}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
-                sizes="340px"
-              />
-              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/15 transition-colors" />
-
-              {/* Centered Translucent Black Box with Bold White Text (Exact transit-si match) */}
-              <div className="absolute inset-0 flex items-center justify-center p-6 pointer-events-none">
-                <div className="bg-black/85 group-hover:bg-black px-6 py-4 rounded text-center backdrop-blur-sm border border-white/20 transition-all duration-300 group-hover:scale-105 shadow-xl max-w-[90%]">
-                  <h3 className="font-card-heading text-white tracking-wider uppercase leading-snug">
-                    {ind.title}
-                  </h3>
-                  <p className="mt-1.5 text-[11px] font-condensed uppercase tracking-wider text-zinc-300 line-clamp-1">
-                    {ind.subtitle}
-                  </p>
-                </div>
+        <FadeIn direction="up">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+            <div className="flex flex-col items-start">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-300 text-zinc-700 font-mono text-xs uppercase tracking-wider mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-container" />
+                <span>CROSS-INDUSTRY DEPLOYMENTS</span>
               </div>
+              <h2 className="font-section-heading text-zinc-900 tracking-tight leading-none uppercase">
+                Industries We Serve
+              </h2>
+              <p className="mt-2 font-condensed text-sm sm:text-base text-zinc-500 uppercase tracking-widest font-semibold">
+                Engineered for Mission-Critical Environments Across the UAE
+              </p>
             </div>
-          ))}
-        </div>
+
+            {/* Slider Arrow Controls */}
+            <div className="flex items-center gap-3">
+              <motion.button
+                type="button"
+                onClick={scrollLeft}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-11 h-11 rounded-full border border-zinc-300 hover:border-black bg-white flex items-center justify-center text-zinc-700 hover:text-black transition-all cursor-pointer shadow-sm hover:shadow"
+                aria-label="Previous Industries"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={scrollRight}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-11 h-11 rounded-full border border-zinc-300 hover:border-black bg-white flex items-center justify-center text-zinc-700 hover:text-black transition-all cursor-pointer shadow-sm hover:shadow"
+                aria-label="Next Industries"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Industries Cards with Technical Badges & Sector Icons */}
+        <FadeIn direction="up" delay={0.15}>
+          <div
+            ref={scrollContainerRef}
+            className="flex items-stretch gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {INDUSTRIES_DATA.map((ind) => {
+              const Icon = ind.icon;
+              return (
+                <motion.div
+                  key={ind.title}
+                  whileHover={{ y: -8 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-[300px] sm:w-[350px] h-[380px] sm:h-[420px] flex-shrink-0 snap-start relative group overflow-hidden rounded-xl border border-zinc-200/90 hover:border-black transition-all duration-300 shadow-md hover:shadow-2xl cursor-pointer bg-zinc-950"
+                >
+                  {/* Background Photo */}
+                  <Image
+                    src={ind.imageUrl}
+                    alt={ind.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-[0.7] group-hover:brightness-[0.6]"
+                    sizes="350px"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20" />
+
+                  {/* Top Header: Technical Code Badge */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
+                    <span className="px-2.5 py-1 rounded bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold text-sky-400 tracking-wider">
+                      [{ind.code}]
+                    </span>
+                    <span className="w-8 h-8 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center group-hover:bg-primary-container transition-colors">
+                      <Icon className="w-4 h-4" />
+                    </span>
+                  </div>
+
+                  {/* Bottom Content Container */}
+                  <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col justify-end z-10">
+                    <div className="w-12 h-1 rounded-full bg-primary-container mb-3 group-hover:w-16 transition-all duration-300" />
+                    <h3 className="font-heading-condensed text-2xl text-white tracking-wide uppercase leading-tight group-hover:text-sky-300 transition-colors">
+                      {ind.title}
+                    </h3>
+                    <p className="mt-2 text-xs font-condensed uppercase tracking-wider text-zinc-300 leading-relaxed">
+                      {ind.subtitle}
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-white/15 flex items-center justify-between text-[11px] font-mono text-zinc-400 group-hover:text-white transition-colors">
+                      <span>{ind.compliance}</span>
+                      <span>&rarr;</span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

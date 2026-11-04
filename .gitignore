@@ -47,6 +47,7 @@ next-env.d.ts
 /.codex/
 /.gemini/
 /DESIGN.md
+skills-lock.json
 
 # IDE & Editor files
 .vscode/
