@@ -184,24 +184,6 @@ export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
             key={`content-${activeSystem.id}`}
             className="flex flex-col items-center max-w-5xl"
           >
-            {/* System Protocol Capsule */}
-            <motion.div
-              initial={{ opacity: 0, y: -24, scale: 0.94 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-900/80 border border-white/20 text-white font-mono text-xs uppercase tracking-widest mb-6 backdrop-blur-xl shadow-2xl"
-            >
-              <span className="w-2 h-2 rounded-full bg-primary-container animate-pulse" />
-              <span className="text-primary-container font-bold">
-                [SYSTEM {activeSystem.code}]
-              </span>
-              <span className="text-zinc-500">•</span>
-              <span className="text-zinc-200 font-medium">
-                {activeSystem.tag}
-              </span>
-            </motion.div>
-
             {/* Kinetic Typography: Word Stagger with Liquid Gold-Amber Glow */}
             <motion.h1
               initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}

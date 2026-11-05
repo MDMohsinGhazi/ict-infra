@@ -3,8 +3,22 @@
 import { CheckCircle2, Clock, Mail, MapPin, Phone, Send } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { Dropdown } from "@/components/ui/Dropdown";
 import { FadeIn } from "@/components/ui/MotionWrappers";
 import { COMPANY_INFO } from "@/data/company";
+
+const SOLUTION_OPTIONS = [
+  "CCTV Video Surveillance & ADMCC Analytics",
+  "Access Control & Biometrics",
+  "Public Address & Voice Alarm (PA/VA)",
+  "Industrial Sensors & Explosion Protection",
+  "EV Charging Solutions",
+  "UPS & Inverter Power Systems",
+  "Master Clock System Solutions",
+  "Structured Cabling & Fiber Optics",
+  "Smart Building Automation & BMS",
+  "Annual Maintenance Contract (AMC 24/7)",
+];
 
 export function CtaSection() {
   const [submitted, setSubmitted] = useState(false);
@@ -219,36 +233,19 @@ export function CtaSection() {
                         >
                           Select Solution You Are Looking For *
                         </label>
-                        <select
+                        <Dropdown
                           id="contact-solution"
+                          name="solution"
                           value={formData.solution}
-                          onChange={(e) =>
+                          options={SOLUTION_OPTIONS}
+                          onChange={(val) =>
                             setFormData({
                               ...formData,
-                              solution: e.target.value,
+                              solution: val,
                             })
                           }
-                          className="w-full h-12 px-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:outline-none focus:border-black transition-colors"
-                        >
-                          <option>
-                            CCTV Video Surveillance &amp; ADMCC Analytics
-                          </option>
-                          <option>Access Control &amp; Biometrics</option>
-                          <option>
-                            Public Address &amp; Voice Alarm (PA/VA)
-                          </option>
-                          <option>
-                            Industrial Sensors &amp; Explosion Protection
-                          </option>
-                          <option>EV Charging Solutions</option>
-                          <option>UPS &amp; Inverter Power Systems</option>
-                          <option>Master Clock System Solutions</option>
-                          <option>Structured Cabling &amp; Fiber Optics</option>
-                          <option>Smart Building Automation &amp; BMS</option>
-                          <option>
-                            Annual Maintenance Contract (AMC 24/7)
-                          </option>
-                        </select>
+                          className="w-full h-12 px-4 bg-zinc-50 border border-zinc-300 text-zinc-900 font-body-sm text-sm focus:border-black rounded-none shadow-xs"
+                        />
                       </div>
                     </div>
 

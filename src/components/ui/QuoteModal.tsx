@@ -4,6 +4,7 @@ import { CheckCircle2, Send, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
+import { Dropdown } from "@/components/ui/Dropdown";
 import { SOLUTIONS_DATA } from "@/data/solutions";
 
 interface QuoteModalProps {
@@ -217,26 +218,28 @@ export function QuoteModal({
                     >
                       Primary Solution Needed
                     </label>
-                    <select
+                    <Dropdown
                       id="quote-service"
+                      name="serviceCategory"
                       value={formData.serviceCategory}
-                      onChange={(e) =>
+                      options={[
+                        ...SOLUTIONS_DATA.map((sol) => ({
+                          value: sol.title,
+                          label: sol.title,
+                        })),
+                        {
+                          value: "Complete Infrastructure Overhaul",
+                          label: "Complete Sovereign Infrastructure Overhaul",
+                        },
+                      ]}
+                      onChange={(val) =>
                         setFormData({
                           ...formData,
-                          serviceCategory: e.target.value,
+                          serviceCategory: val,
                         })
                       }
-                      className="w-full px-3.5 py-2.5 rounded-lg border border-border-hairline bg-surface-subtle focus:bg-surface-canvas focus:outline-none focus:ring-2 focus:ring-secondary-container text-on-surface font-body-md"
-                    >
-                      {SOLUTIONS_DATA.map((sol) => (
-                        <option key={sol.id} value={sol.title}>
-                          {sol.title}
-                        </option>
-                      ))}
-                      <option value="Complete Infrastructure Overhaul">
-                        Complete Sovereign Infrastructure Overhaul
-                      </option>
-                    </select>
+                      className="w-full px-3.5 py-2.5 rounded-lg border border-border-hairline bg-surface-subtle text-on-surface font-body-md shadow-xs focus:ring-2 focus:ring-secondary-container"
+                    />
                   </div>
 
                   <div>
