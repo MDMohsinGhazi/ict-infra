@@ -86,25 +86,6 @@ const CINEMATIC_SYSTEMS = [
 
 export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [uaeTime, setUaeTime] = useState("");
-
-  // Live UAE local time clock
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: "Asia/Dubai",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-      };
-      setUaeTime(now.toLocaleTimeString("en-GB", options));
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   // Slide timer (8.5 seconds per slide)
   useEffect(() => {
@@ -171,24 +152,6 @@ export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
 
       {/* Cyber Mesh Network Interactive Canvas Layer */}
       <HeroNetwork />
-
-      {/* 2. Heads-Up Display (HUD) Telemetry Overlays in Corners */}
-      {/* Top Left: Coordinates & Regulatory Status */}
-      <div className="hidden xl:flex absolute top-24 left-8 z-20 items-center gap-3 text-[10px] font-mono text-zinc-400 tracking-widest uppercase">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-        <span>LAT 24.4539° N • LON 54.3773° E</span>
-        <span className="text-zinc-600">/</span>
-        <span className="text-zinc-300 font-bold">ABU DHABI SOVEREIGN NOC</span>
-      </div>
-
-      {/* Top Right: Real-Time UAE Time & SLA Status */}
-      <div className="hidden xl:flex absolute top-24 right-8 z-20 items-center gap-3 text-[10px] font-mono text-zinc-400 tracking-widest uppercase">
-        <span className="text-primary-container font-bold">
-          GST {uaeTime || "03:00:00"}
-        </span>
-        <span className="text-zinc-600">/</span>
-        <span className="text-emerald-400">ADMCC &amp; SIRA APPROVED</span>
-      </div>
 
       {/* Navigation Arrow Left (Floating Pill) */}
       <motion.button
