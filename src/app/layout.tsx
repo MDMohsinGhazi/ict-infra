@@ -58,9 +58,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Royal Arabian Smart Technologies LLC" }],
   icons: {
-    icon: "/images/royal-arabian-emblem.png",
-    shortcut: "/images/royal-arabian-emblem.png",
-    apple: "/images/royal-arabian-emblem.png",
+    icon: [
+      { url: "/icon.png", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   openGraph: {
     title:
