@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import { COMPANY_INFO } from "@/data/company";
 
 export function Footer() {
@@ -9,19 +10,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand & About */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded bg-primary-container flex items-center justify-center text-white font-bold font-condensed text-lg">
-                RA
-              </div>
-              <div className="flex flex-col">
-                <span className="font-condensed text-2xl text-white tracking-wider font-bold leading-tight">
-                  {COMPANY_INFO.name}
-                </span>
-                <span className="font-label-sm text-[10px] text-zinc-400 tracking-widest uppercase font-semibold">
-                  Smart Technologies LLC
-                </span>
-              </div>
-            </div>
+            <a href="/" className="inline-block py-1">
+              <Image
+                src="/images/royal-arabian-logo-dark.png"
+                alt={COMPANY_INFO.legalName}
+                width={260}
+                height={92}
+                className="h-12 w-auto object-contain hover:brightness-110 transition-all"
+              />
+            </a>
 
             <p className="font-body-sm text-sm text-zinc-400 max-w-sm leading-relaxed">
               Premier UAE system integrator established in Abu Dhabi in 2007. We

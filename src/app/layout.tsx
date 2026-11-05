@@ -58,7 +58,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Royal Arabian Smart Technologies LLC" }],
   icons: {
-    icon: "/favicon.ico",
+    icon: "/images/royal-arabian-emblem.png",
+    shortcut: "/images/royal-arabian-emblem.png",
+    apple: "/images/royal-arabian-emblem.png",
   },
   openGraph: {
     title:
@@ -67,6 +69,14 @@ export const metadata: Metadata = {
       "Mission-critical ICT infrastructure, ADMCC approved CCTV surveillance, and enterprise ELV automation across the United Arab Emirates.",
     type: "website",
     locale: "en_AE",
+    images: [
+      {
+        url: "/images/royal-arabian-logo.jpg",
+        width: 1024,
+        height: 364,
+        alt: "Royal Arabian Smart Technologies LLC Logo",
+      },
+    ],
   },
 };
 
