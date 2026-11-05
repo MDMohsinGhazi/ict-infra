@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight, Mail, MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, ChevronRight, Menu, Phone, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -25,102 +25,38 @@ export function Header({ onOpenQuote }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 pt-safe transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#030303]/98 backdrop-blur-xl border-b border-white/15 shadow-2xl"
-          : "bg-[#050505]/90 backdrop-blur-md border-b border-white/10 shadow-lg"
+          ? "bg-[#030303]/98 backdrop-blur-xl border-b border-white/15 shadow-2xl shadow-black/80"
+          : "bg-[#050505]/95 backdrop-blur-md border-b border-white/10 shadow-lg"
       }`}
     >
-      {/* Mobile Bar (< lg) */}
-      <div className="lg:hidden h-16 px-4 flex items-center justify-between gap-2">
-        <a href="/" className="flex items-center gap-2 min-w-0 py-1">
-          <Image
-            src="/images/royal-arabian-logo-dark.png"
-            alt={COMPANY_INFO.legalName}
-            width={170}
-            height={60}
-            className="h-9 w-auto object-contain"
-            priority
-          />
-        </a>
-
-        <div className="flex items-center gap-2 shrink-0">
-          <motion.a
-            aria-label="Direct Phone Line"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-9 h-9 rounded-full bg-zinc-800 text-white flex items-center justify-center hover:bg-zinc-700 transition-colors"
-            href={`tel:${COMPANY_INFO.phone}`}
-            title="Call Us"
+      {/* Unified GlobalWings-Style Clean Header Bar (No Phone/Email/Location Text) */}
+      <div className="relative flex justify-between items-center w-full h-16 lg:h-20 pr-4 sm:pr-6 lg:pr-8">
+        {/* Left: GlobalWings-Style Docked White Logo Box with Brand Color Accent Bars */}
+        <div className="flex items-stretch h-full">
+          <a
+            href="/"
+            aria-label="Royal Arabian Smart Technologies Home"
+            className="relative bg-white px-4 sm:px-6 lg:px-8 flex items-center justify-center transition-all duration-200 active:scale-95 group hover:bg-zinc-50"
           >
-            <Phone className="w-4 h-4 text-primary-container" />
-          </motion.a>
-          <motion.button
-            type="button"
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-9 h-9 rounded-lg bg-zinc-800 text-white flex items-center justify-center hover:bg-zinc-700 transition-colors cursor-pointer"
-            aria-label="Toggle Navigation Menu"
-          >
-            {mobileMenuOpen ? (
-              <X className="w-5 h-5 text-white" />
-            ) : (
-              <Menu className="w-5 h-5 text-white" />
-            )}
-          </motion.button>
+            <Image
+              src="/images/royal-arabian-logo.jpg"
+              alt={COMPANY_INFO.legalName}
+              width={160}
+              height={58}
+              className="h-10 sm:h-12 lg:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
+          </a>
+          {/* Vertical Brand Accent Strips (Royal Arabian Signature Orange + Sovereign Cyan) */}
+          <div className="h-full w-2 sm:w-2.5 bg-primary-container" />
+          <div className="h-full w-2 sm:w-2.5 bg-[#1b6afe]" />
         </div>
-      </div>
 
-      {/* Desktop Top Utility Bar (lg+) */}
-      <div className="hidden lg:block bg-[#000000] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between font-label-sm text-xs text-zinc-400">
-          <div className="flex items-center gap-6">
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Phone className="w-3.5 h-3.5 text-primary-container" />
-              <span>{COMPANY_INFO.phone}</span>
-            </a>
-            <a
-              href={`mailto:${COMPANY_INFO.email}`}
-              className="flex items-center gap-1.5 hover:text-white transition-colors"
-            >
-              <Mail className="w-3.5 h-3.5 text-primary-container" />
-              <span>{COMPANY_INFO.email}</span>
-            </a>
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-zinc-400" />
-              <span>Abu Dhabi &amp; Dubai, UAE</span>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 py-0.5 px-2.5 rounded-full bg-white/5 font-label-sm text-[11px] text-zinc-300 border border-white/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse" />
-              ADMCC Certified • SIRA Compliant • ISO 9001:2015
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Main App Bar (lg+) */}
-      <div className="hidden lg:flex h-20 max-w-7xl mx-auto px-6 items-center justify-between gap-6">
-        {/* Brand */}
-        <a href="/" className="flex items-center gap-3 group py-1">
-          <Image
-            src="/images/royal-arabian-logo-dark.png"
-            alt={COMPANY_INFO.legalName}
-            width={260}
-            height={92}
-            className="h-12 w-auto object-contain group-hover:brightness-110 transition-all"
-            priority
-          />
-        </a>
-
-        {/* Desktop Navigation */}
+        {/* Center: Desktop Navigation Links (Absolute Centered like GlobalWings) */}
         <nav
-          className="flex items-center gap-6 xl:gap-8"
+          className="hidden lg:flex items-center gap-7 xl:gap-9 absolute left-1/2 -translate-x-1/2"
           aria-label="Main Navigation"
         >
           {NAV_LINKS.map((link) => (
@@ -134,27 +70,50 @@ export function Header({ onOpenQuote }: HeaderProps) {
           ))}
         </nav>
 
-        {/* Action Controls */}
-        <div className="flex items-center gap-4">
-          <motion.a
-            href={`tel:${COMPANY_INFO.phone}`}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors"
-            title="Direct Phone Line"
-          >
-            <Phone className="w-4 h-4 text-primary-container" />
-          </motion.a>
+        {/* Right: Modern High-Conversion Action Button (Replacing 'Talk to expert') */}
+        <div className="flex items-center gap-3">
           <motion.button
             type="button"
             onClick={onOpenQuote}
-            whileHover={{ scale: 1.02, y: -1 }}
-            whileTap={{ scale: 0.98 }}
-            className="h-10 px-6 rounded-none bg-primary-container hover:bg-primary text-white font-condensed text-base font-bold tracking-wider uppercase transition-colors cursor-pointer shadow-md"
+            whileHover={{ scale: 1.04, y: -1 }}
+            whileTap={{ scale: 0.97 }}
+            className="hidden sm:inline-flex items-center gap-2 px-5 lg:px-6 py-2.5 rounded-full bg-gradient-to-r from-primary-container via-orange-600 to-primary-container bg-[length:200%_auto] hover:bg-right text-white font-condensed text-sm lg:text-base uppercase font-bold tracking-wider shadow-lg shadow-orange-950/40 hover:shadow-orange-500/30 transition-all duration-300 border border-white/20 cursor-pointer"
           >
-            Talk to an Expert
+            <span>Get Instant Quote</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <ArrowUpRight className="w-4 h-4 text-white" />
           </motion.button>
+
+          {/* Mobile Right Controls: Compact Quote Pill & Menu Toggle */}
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onOpenQuote}
+              className="sm:hidden px-3 py-1.5 rounded-full bg-primary-container text-white font-condensed text-xs uppercase font-bold tracking-wider flex items-center gap-1 shadow-md"
+            >
+              <span>Quote</span>
+              <ArrowUpRight className="w-3 h-3" />
+            </button>
+
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="w-10 h-10 rounded-lg bg-zinc-800/90 text-white flex items-center justify-center hover:bg-zinc-700 transition-colors cursor-pointer border border-white/10"
+              aria-label="Toggle Navigation Menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-white" />
+              ) : (
+                <Menu className="w-5 h-5 text-white" />
+              )}
+            </motion.button>
+          </div>
         </div>
+
+        {/* Subtle Bottom Ambient Gradient Glow Divider */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] w-[70%] bg-gradient-to-r from-transparent via-primary-container/40 to-transparent pointer-events-none" />
       </div>
 
       {/* Mobile Drawer Menu with Fluid Animation */}
@@ -199,13 +158,14 @@ export function Header({ onOpenQuote }: HeaderProps) {
                     setMobileMenuOpen(false);
                     onOpenQuote();
                   }}
-                  className="w-full py-3 rounded-none bg-primary-container text-white font-condensed text-base uppercase font-bold tracking-wider text-center hover:bg-primary transition-all cursor-pointer"
+                  className="w-full py-3 rounded-full bg-gradient-to-r from-primary-container to-orange-600 text-white font-condensed text-base uppercase font-bold tracking-wider text-center hover:brightness-110 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg"
                 >
-                  Talk to an Expert
+                  <span>Get Instant Quote</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </motion.button>
                 <a
                   href={`tel:${COMPANY_INFO.phone}`}
-                  className="w-full py-2.5 rounded-none border border-white/20 text-white font-condensed text-sm uppercase font-semibold tracking-wider text-center flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-full border border-white/20 text-white font-condensed text-sm uppercase font-semibold tracking-wider text-center flex items-center justify-center gap-2 hover:bg-white/5 transition-colors"
                 >
                   <Phone className="w-4 h-4 text-primary-container" />
                   <span>Call {COMPANY_INFO.phone}</span>

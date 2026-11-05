@@ -35,7 +35,7 @@ export default function Home() {
       <Header onOpenQuote={() => handleOpenQuote()} />
 
       {/* Main Content (Transit-si Alternating Light / Dark Flow) */}
-      <main className="w-full pt-16 lg:pt-[116px] bg-black min-h-screen">
+      <main className="w-full pt-16 lg:pt-20 bg-black min-h-screen">
         <div className="flex flex-col w-full">
           {/* 1. Hero Section (Pitch Black / Datacenter background with bold condensed typography) */}
           <HeroSection onOpenConsultation={() => handleOpenQuote()} />

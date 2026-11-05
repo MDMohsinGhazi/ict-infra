@@ -1,6 +1,12 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Phone, ShieldCheck } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  Phone,
+  ShieldCheck,
+} from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -15,26 +21,38 @@ const HERO_SLIDES = [
   {
     title: "SECURE, SIMPLIFY, SCALE WITHOUT COMPLEXITY",
     subtitle:
-      "WE DESIGN AND INTEGRATE NEXT-GEN SECURITY AND ELV SOLUTIONS THAT KEEP YOUR OPERATIONS PROTECTED, CONNECTED, AND READY FOR TOMORROW - DELIVERING EFFICIENCY, SCALABILITY, AND PEACE OF MIND.",
-    imageUrl: "/images/hero-slide-1.jpg",
+      "WE DESIGN AND INTEGRATE NEXT-GEN SECURITY AND ELV SOLUTIONS THAT KEEP YOUR OPERATIONS PROTECTED, CONNECTED, AND FUTURE-READY ACROSS ABU DHABI & THE UAE.",
+    imageUrl: "/images/hero-cinematic-1.jpg",
     highlight: "ADMCC & SIRA CERTIFIED INTEGRATOR",
     telemetry: "SLA GUARANTEE: 99.98% • ABU DHABI NOC 24/7",
+    tagline: "NEXT-GEN ELV & ICT SYSTEMS",
   },
   {
-    title: "FUTURE-READY INFRASTRUCTURE FOR COMPLEX ENTERPRISES",
+    title: "MISSION-CRITICAL ARCHITECTURE FOR SOVEREIGN ENTERPRISES",
     subtitle:
-      "MISSION-CRITICAL FIBER CABLING, HIGH-DENSITY WI-FI, AND AI-POWERED SURVEILLANCE ECOSYSTEMS ACROSS ABU DHABI AND DUBAI.",
-    imageUrl: "/images/hero-slide-2.jpg",
-    highlight: "TURNKEY ICT & BUILDING AUTOMATION",
-    telemetry: "TIER-III COMPLIANT • ZERO DOWNTIME REDUNDANCY",
-  },
-  {
-    title: "SEAMLESS CONNECTIVITY, ZERO COMPROMISE",
-    subtitle:
-      "PROTECTING GOVERNMENT FACILITIES, FINANCIAL HUBS, AND CRITICAL HEALTHCARE INFRASTRUCTURE WITH 24/7 PROACTIVE SLA EXCELLENCE.",
-    imageUrl: "/images/hero-slide-3.jpg",
-    highlight: "20+ YEARS OF GCC OPERATIONAL RIGOR",
+      "AI-POWERED SURVEILLANCE ECOSYSTEMS, BIOMETRIC ACCESS CONTROL, AND TURNKEY COMMAND CENTRES DELIVERED WITH UNCOMPROMISING PRECISION.",
+    imageUrl: "/images/hero-cinematic-2.jpg",
+    highlight: "COMMAND & CONTROL SPECIALISTS",
     telemetry: "SUB-4HR ON-SITE SEVERITY-1 EMERGENCY SLA",
+    tagline: "SURVEILLANCE & AI ANALYTICS",
+  },
+  {
+    title: "SEAMLESS CONNECTIVITY ACROSS THE UAE METROPOLIS",
+    subtitle:
+      "PROTECTING GOVERNMENT FACILITIES, FINANCIAL HUBS, AND CRITICAL INFRASTRUCTURE WITH 20+ YEARS OF OPERATIONAL RIGOR.",
+    imageUrl: "/images/hero-cinematic-3.jpg",
+    highlight: "20+ YEARS GCC OPERATIONAL RIGOR",
+    telemetry: "8,000+ COMPLETED ENTERPRISE DEPLOYMENTS",
+    tagline: "SOVEREIGN OPERATIONAL RIGOR",
+  },
+  {
+    title: "FUTURE-PROOF OPTICAL FIBER & HIGH-DENSITY WI-FI",
+    subtitle:
+      "TURNKEY DATA CENTER INFRASTRUCTURE, BACKBONE CABLING, AND SMART AUTOMATION TAILORED FOR COMPLEX COMMERCIAL HUBS.",
+    imageUrl: "/images/hero-cinematic-4.jpg",
+    highlight: "TIER-III COMPLIANT INFRASTRUCTURE",
+    telemetry: "ADMCC • SIRA • ADNOC ICV • ISO 9001 CERTIFIED",
+    tagline: "TURNKEY DATA CENTER & NETWORKING",
   },
 ];
 
@@ -44,7 +62,7 @@ export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 7500);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
@@ -61,38 +79,48 @@ export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
   const slide = HERO_SLIDES[currentSlide];
 
   return (
-    <section className="relative w-full min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center bg-[#00040d] overflow-hidden select-none">
-      {/* Background Image Carousel with Atmospheric Transitions */}
-      {HERO_SLIDES.map((item, idx) => (
-        <div
-          key={item.title}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            idx === currentSlide ? "opacity-100 z-0" : "opacity-0 -z-10"
-          }`}
+    <section className="relative w-full min-h-[88vh] lg:min-h-[94vh] flex items-center justify-center bg-[#00040d] overflow-hidden select-none">
+      {/* High-Resolution Cinematic Background with Majestic Ken Burns Zoom Effect */}
+      <AnimatePresence mode="popLayout">
+        <motion.div
+          key={`cinematic-bg-${currentSlide}`}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1.14 }}
+          exit={{ opacity: 0, scale: 1.06 }}
+          transition={{
+            scale: { duration: 9.5, ease: [0.16, 1, 0.3, 1] },
+            opacity: { duration: 1.2, ease: "easeInOut" },
+          }}
+          className="absolute inset-0 z-0 overflow-hidden pointer-events-none"
         >
           <Image
-            src={item.imageUrl}
-            alt={item.title}
+            src={slide.imageUrl}
+            alt={slide.title}
             fill
-            className="object-cover object-center filter brightness-[0.35] contrast-125"
-            priority={idx === 0}
+            className="object-cover object-center filter brightness-[0.4] contrast-125"
+            priority={currentSlide === 0}
+            sizes="100vw"
           />
-          {/* Sovereign Navy Ambient Vignette */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_10%,rgba(11,31,58,0.7),rgba(0,4,13,0.92))]" />
-        </div>
-      ))}
 
-      {/* Interactive Tech/Cyber Mesh Network Canvas */}
+          {/* Sovereign Navy Ambient Vignette Gradient */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_95%_75%_at_50%_15%,rgba(11,31,58,0.72),rgba(0,4,13,0.96))]" />
+
+          {/* Cinematic Top and Bottom Vignettes */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#00040d] via-transparent to-black/70 pointer-events-none" />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Interactive Tech/Cyber Mesh Network Canvas Layer */}
       <HeroNetwork />
 
       {/* Navigation Arrow Left */}
       <motion.button
         type="button"
         onClick={prevSlide}
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.1, backgroundColor: "rgba(0,0,0,0.85)" }}
         whileTap={{ scale: 0.95 }}
         aria-label="Previous Slide"
-        className="absolute left-3 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 lg:w-13 lg:h-13 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-xl"
+        className="absolute left-3 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 lg:w-14 lg:h-14 rounded-full bg-black/60 text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-2xl hover:border-primary-container"
       >
         <ChevronLeft className="w-5 h-5 lg:w-6 lg:h-6" />
       </motion.button>
@@ -101,96 +129,126 @@ export function HeroSection({ onOpenConsultation }: HeroSectionProps) {
       <motion.button
         type="button"
         onClick={nextSlide}
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.1, backgroundColor: "rgba(0,0,0,0.85)" }}
         whileTap={{ scale: 0.95 }}
         aria-label="Next Slide"
-        className="absolute right-3 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 lg:w-13 lg:h-13 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-xl"
+        className="absolute right-3 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 lg:w-14 lg:h-14 rounded-full bg-black/60 text-white border border-white/20 flex items-center justify-center transition-colors cursor-pointer backdrop-blur-md shadow-2xl hover:border-primary-container"
       >
         <ChevronRight className="w-5 h-5 lg:w-6 lg:h-6" />
       </motion.button>
 
-      {/* Hero Content Container with Authored Animated Transitions */}
+      {/* Hero Content Container with High-Impact Text Animations */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 lg:py-28 text-center flex flex-col items-center">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            key={`hero-content-${currentSlide}`}
             className="flex flex-col items-center"
           >
-            {/* Live Sovereign Telemetry & Certification Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-950/70 border border-blue-400/30 text-white font-mono text-xs uppercase tracking-wider mb-6 backdrop-blur-md shadow-lg">
+            {/* 1. Tagline & Live Sovereign Telemetry Pill */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.94 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-blue-950/75 border border-blue-400/30 text-white font-mono text-xs uppercase tracking-wider mb-6 backdrop-blur-md shadow-xl"
+            >
               <span className="w-2 h-2 rounded-full bg-primary-container animate-pulse" />
               <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-              <span className="text-zinc-200 font-semibold">
+              <span className="text-zinc-200 font-semibold tracking-wide">
                 {slide.highlight}
               </span>
               <span className="hidden sm:inline text-zinc-500">•</span>
-              <span className="hidden sm:inline text-sky-400">
+              <span className="hidden sm:inline text-sky-400 font-mono">
                 {slide.telemetry}
               </span>
-            </div>
+            </motion.div>
 
-            {/* Transit-style Massive Bold Condensed Heading */}
-            <h1 className="font-hero-condensed text-white tracking-wide leading-tight max-w-4xl text-shadow-lg">
+            {/* 2. Bold Condensed Main Headline (Blur-to-Clear Majestic Entrance) */}
+            <motion.h1
+              initial={{ opacity: 0, y: 36, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+              transition={{
+                duration: 0.8,
+                delay: 0.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="font-hero-condensed text-4xl sm:text-6xl lg:text-7xl text-white tracking-wide leading-[1.08] max-w-4xl text-shadow-lg"
+            >
               {slide.title}
-            </h1>
+            </motion.h1>
 
-            {/* Transit-style Centered Uppercase Subtitle */}
-            <p className="mt-6 font-body-md text-xs sm:text-sm lg:text-base text-zinc-300 font-medium tracking-wider max-w-3xl uppercase leading-relaxed text-balance">
+            {/* 3. Centered Uppercase Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 24, filter: "blur(6px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -14, filter: "blur(4px)" }}
+              transition={{
+                duration: 0.7,
+                delay: 0.32,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-6 font-body-md text-xs sm:text-sm lg:text-base text-zinc-300 font-medium tracking-wider max-w-3xl uppercase leading-relaxed text-balance"
+            >
               {slide.subtitle}
-            </p>
+            </motion.p>
+
+            {/* 4. Action Buttons (Replacing 'Talk to expert' with 'Get Instant Quote') */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+            >
+              <motion.button
+                type="button"
+                onClick={onOpenConsultation}
+                whileHover={{
+                  scale: 1.04,
+                  y: -2,
+                  boxShadow: "0 16px 36px -6px rgba(249,115,22,0.5)",
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto min-w-[230px] px-8 py-4 rounded-full bg-gradient-to-r from-primary-container via-orange-600 to-primary-container bg-[length:200%_auto] hover:bg-right text-white font-condensed text-base lg:text-lg font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shadow-2xl flex items-center justify-center gap-2 border border-white/20"
+              >
+                <span>Get Instant Quote</span>
+                <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                <ArrowUpRight className="w-5 h-5 text-white" />
+              </motion.button>
+
+              <motion.a
+                href="#solutions"
+                whileHover={{
+                  scale: 1.04,
+                  y: -2,
+                  boxShadow: "0 12px 28px -5px rgba(255,255,255,0.25)",
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto min-w-[210px] px-8 py-4 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/30 hover:border-white font-condensed text-base lg:text-lg font-bold uppercase tracking-wider text-center transition-all cursor-pointer shadow-lg backdrop-blur-md"
+              >
+                Explore Solutions
+              </motion.a>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Dual Rectangular CTA Buttons with High-Tech Micro-Interactions */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-          <motion.button
-            type="button"
-            onClick={onOpenConsultation}
-            whileHover={{
-              y: -2,
-              boxShadow: "0 12px 30px -5px rgba(249,115,22,0.35)",
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15 }}
-            className="w-full sm:w-auto min-w-[210px] px-8 py-3.5 bg-primary-container hover:bg-primary text-white border border-primary-container font-condensed text-base lg:text-lg font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xl flex items-center justify-center gap-2"
-          >
-            <span>Talk to an Expert</span>
-            <span className="text-white/80">&rarr;</span>
-          </motion.button>
-          <motion.a
-            href="#solutions"
-            whileHover={{
-              y: -2,
-              boxShadow: "0 12px 30px -5px rgba(255,255,255,0.2)",
-            }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.15 }}
-            className="w-full sm:w-auto min-w-[210px] px-8 py-3.5 bg-white/10 hover:bg-white text-white hover:text-black border border-white/30 hover:border-white font-condensed text-base lg:text-lg font-bold uppercase tracking-wider text-center transition-all cursor-pointer shadow-lg backdrop-blur-sm"
-          >
-            Our Solutions
-          </motion.a>
-        </div>
-
-        {/* Slide Indicators with Animated Fill */}
-        <div className="mt-12 flex items-center gap-2.5">
+        {/* Slide Indicators with Dynamic Progress Fill */}
+        <div className="mt-14 flex items-center gap-3">
           {HERO_SLIDES.map((item, idx) => (
             <button
               key={item.title}
               type="button"
               onClick={() => setCurrentSlide(idx)}
-              className="relative h-1.5 rounded-full overflow-hidden transition-all duration-300 cursor-pointer"
-              style={{ width: idx === currentSlide ? "40px" : "12px" }}
-              aria-label={`Go to slide ${idx + 1}`}
+              className="relative h-2 rounded-full overflow-hidden transition-all duration-300 cursor-pointer"
+              style={{ width: idx === currentSlide ? "52px" : "14px" }}
+              aria-label={`Go to slide ${idx + 1}: ${item.tagline}`}
             >
               <div
                 className={`w-full h-full transition-colors duration-300 ${
                   idx === currentSlide
-                    ? "bg-primary-container shadow-[0_0_8px_rgba(249,115,22,0.8)]"
-                    : "bg-white/30 hover:bg-white/50"
+                    ? "bg-primary-container shadow-[0_0_12px_rgba(249,115,22,0.9)]"
+                    : "bg-white/30 hover:bg-white/60"
                 }`}
               />
             </button>
